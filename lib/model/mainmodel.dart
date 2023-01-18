@@ -1,18 +1,16 @@
-// To parse this JSON data, do
-//
-//     final foodwifidashmodel = foodwifidashmodelFromJson(jsonString);
-
 import 'dart:convert';
 
-List<Foodwifidashmodel> foodwifidashmodelFromJson(String str) =>
-    List<Foodwifidashmodel>.from(
-        json.decode(str).map((x) => Foodwifidashmodel.fromJson(x)));
+List<Foodwifimodel?>? foodwifimodelFromJson(String str) =>
+    json.decode(str) == null
+        ? []
+        : List<Foodwifimodel?>.from(
+            json.decode(str)!.map((x) => Foodwifimodel.fromJson(x)));
 
-String foodwifidashmodelToJson(List<Foodwifidashmodel> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String foodwifimodelToJson(List<Foodwifimodel?>? data) => json.encode(
+    data == null ? [] : List<dynamic>.from(data.map((x) => x!.toJson())));
 
-class Foodwifidashmodel {
-  Foodwifidashmodel({
+class Foodwifimodel {
+  Foodwifimodel({
     required this.id,
     required this.timeDistanceSameLine,
     required this.showFavourite,
@@ -34,28 +32,27 @@ class Foodwifidashmodel {
     required this.items,
   });
 
-  final int id;
-  final bool timeDistanceSameLine;
-  final bool showFavourite;
-  final String type;
-  final String size;
-  final String rows;
-  final String title;
-  final String description;
-  final bool sideBySide;
-  final bool textOverlay;
-  final String image;
-  final bool rounded;
-  final int startingIn;
-  final bool titleOnly;
-  final bool autoplay;
-  final bool hasMore;
-  final String imageHeight;
-  final String imageWidth;
-  final List<List<Item>> items;
+  final int? id;
+  final bool? timeDistanceSameLine;
+  final bool? showFavourite;
+  final String? type;
+  final String? size;
+  final String? rows;
+  final String? title;
+  final String? description;
+  final bool? sideBySide;
+  final bool? textOverlay;
+  final String? image;
+  final bool? rounded;
+  final int? startingIn;
+  final bool? titleOnly;
+  final bool? autoplay;
+  final bool? hasMore;
+  final String? imageHeight;
+  final String? imageWidth;
+  final List<List<Item?>?>? items;
 
-  factory Foodwifidashmodel.fromJson(Map<String, dynamic> json) =>
-      Foodwifidashmodel(
+  factory Foodwifimodel.fromJson(Map<String, dynamic> json) => Foodwifimodel(
         id: json["id"],
         timeDistanceSameLine: json["time_distance_same_line"],
         showFavourite: json["show_favourite"],
@@ -74,8 +71,11 @@ class Foodwifidashmodel {
         hasMore: json["hasMore"],
         imageHeight: json["image_height"],
         imageWidth: json["image_width"],
-        items: List<List<Item>>.from(json["items"]
-            .map((x) => List<Item>.from(x.map((x) => Item.fromJson(x))))),
+        items: json["items"] == null
+            ? []
+            : List<List<Item?>?>.from(json["items"]!.map((x) => x == null
+                ? []
+                : List<Item?>.from(x!.map((x) => Item.fromJson(x))))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -97,8 +97,11 @@ class Foodwifidashmodel {
         "hasMore": hasMore,
         "image_height": imageHeight,
         "image_width": imageWidth,
-        "items": List<dynamic>.from(
-            items.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+        "items": items == null
+            ? []
+            : List<dynamic>.from(items!.map((x) => x == null
+                ? []
+                : List<dynamic>.from(x.map((x) => x!.toJson())))),
       };
 }
 
@@ -126,26 +129,26 @@ class Item {
     required this.promotionColor,
   });
 
-  final String img;
-  final Type type;
-  final String id;
-  final String keyword;
-  final String title;
-  final bool centerText;
-  final String description;
-  final String placeholderColor;
-  final String distance;
-  final String time;
-  final String rating;
+  final String? img;
+  final String? type;
+  final String? id;
+  final String? keyword;
+  final String? title;
+  final bool? centerText;
+  final String? description;
+  final String? placeholderColor;
+  final String? distance;
+  final String? time;
+  final String? rating;
   final dynamic offer;
-  final String offerUpto;
-  final String offerDescription;
-  final bool showOfferBadge;
-  final bool topBadge;
-  final int ratingCount;
-  final bool freeDelivery;
-  final String promotion;
-  final String promotionColor;
+  final String? offerUpto;
+  final String? offerDescription;
+  final bool? showOfferBadge;
+  final bool? topBadge;
+  final int? ratingCount;
+  final bool? freeDelivery;
+  final String? promotion;
+  final String? promotionColor;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         img: json["img"],
@@ -190,42 +193,12 @@ class Item {
         "ratingCount": ratingCount,
         "freeDelivery": freeDelivery,
         "promotion": promotion,
-        "promotion_color": promotionColor,
+        "promotion_color": promotionColor
       };
 }
 
-// enum OfferDescription { THE_15_OFF_UPTO_1000, THE_10_OFF_UPTO_500, THE_5_OFF_UPTO_500, EMPTY }
 
-// final offerDescriptionValues = EnumValues({
-//     "": OfferDescription.EMPTY,
-//     "10% off upto 500": OfferDescription.THE_10_OFF_UPTO_500,
-//     "15% off upto 1000": OfferDescription.THE_15_OFF_UPTO_1000,
-//     "5% off upto 500": OfferDescription.THE_5_OFF_UPTO_500
-// });
 
-// enum PromotionColor { THE_591_D1_D }
-
-// final promotionColorValues = EnumValues({
-//     "#591d1d": PromotionColor.THE_591_D1_D
-// });
-
-// enum Type { STORE_TYPE, NEARBY, SEARCH, RESTAURANT }
-
-// final typeValues = EnumValues({
-//     "nearby": Type.NEARBY,
-//     "restaurant": Type.RESTAURANT,
-//     "search": Type.SEARCH,
-//     "store_type": Type.STORE_TYPE
-// });
-
-// class EnumValues<T> {
-//     Map<String, T> map;
-//     Map<T, String>? reverseMap;
-
-//     EnumValues(this.map);
-
-//     Map<T, String>? get reverse {
-//         reverseMap ??= map.map((k, v) => MapEntry(v, k));
-//         return reverseMap;
-//     }
-// }
+// // To parse this JSON data, do
+// //
+// //     final foodwifidashmodel = foodwifidashmodelFromJson(jsonString);
