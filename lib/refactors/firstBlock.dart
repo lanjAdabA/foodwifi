@@ -1,6 +1,8 @@
-//todo Order and win cashback block
+//todo {Order and win cashback block}
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:foodwifi/refactors/skeletonBlock.dart';
 
 class FirstBlock extends StatelessWidget {
   const FirstBlock({
@@ -30,8 +32,8 @@ class FirstBlock extends StatelessWidget {
                       width: double.maxFinite,
                       height: double.maxFinite,
                       child: firstlistitem.isEmpty
-                          ? const Center(
-                              child: CircularProgressIndicator(),
+                          ? const Skeleton(
+                              height: 237,
                             )
                           : ListView.builder(
                               controller:
@@ -58,11 +60,23 @@ class FirstBlock extends StatelessWidget {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[0][index]!.img}',
+                                            child: CachedNetworkImage(
+                                              fadeInDuration:
+                                                  const Duration(seconds: 1),
+                                              fit: BoxFit.fitWidth,
+                                              imageUrl:
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[0][index]!.img!}',
                                               height: 242,
-                                              width: 420,
-                                              fit: BoxFit.cover,
+                                              width: 432,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      const Skeleton(
+                                                height: 185,
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                           Padding(

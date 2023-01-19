@@ -1,7 +1,9 @@
-//todo Foods near you block
+//todo {Foods near you block}
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:foodwifi/refactors/skeletonBlock.dart';
 
 class SecondBlock extends StatelessWidget {
   const SecondBlock({
@@ -31,8 +33,8 @@ class SecondBlock extends StatelessWidget {
                       width: double.maxFinite,
                       height: double.maxFinite,
                       child: firstlistitem.isEmpty
-                          ? const Center(
-                              child: CircularProgressIndicator(),
+                          ? const Skeleton(
+                              height: 130,
                             )
                           : ListView.builder(
                               controller:
@@ -57,11 +59,21 @@ class SecondBlock extends StatelessWidget {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[1][index]!.img}',
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[1][index]!.img}',
                                               height: 100,
                                               width: 100,
                                               fit: BoxFit.cover,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      const Skeleton(
+                                                height: 72,
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                           Padding(

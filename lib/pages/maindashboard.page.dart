@@ -8,6 +8,7 @@ import 'package:foodwifi/refactors/eighthBlock.dart';
 import 'package:foodwifi/refactors/fifthBlock.dart';
 import 'package:foodwifi/refactors/firstBlock.dart';
 import 'package:foodwifi/refactors/fourthBlock.dart';
+import 'package:foodwifi/refactors/ninthBlock.dart';
 import 'package:foodwifi/refactors/secondBlock.dart';
 import 'package:foodwifi/refactors/seventhBlock.dart';
 import 'package:foodwifi/refactors/sixthBlock.dart';
@@ -91,47 +92,32 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
                     SliverToBoxAdapter(
                       child: Column(
                         children: [
-                          //!_<[0]_First_block_starts_{order_&_win_cashback}
                           FirstBlock(firstlistitem: firstlistitem),
-
-// !_>[0]_FIrst_block_ends
-
-                          // !_<[1]_Second_block_starts_{foods_near_you}
                           SecondBlock(firstlistitem: firstlistitem),
-// !_>[1]_Second_block_ends
-
-                          // !_<[2]_Third_block_starts_{tajkirah}
                           ThirdBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-// !_>[2]_Third_block_ends
-
-                          // !_<[3]_Fourth_block_starts_{choosefromcuisunes}
                           FourthBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-
                           FifthBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-// !block ends
-
                           SixthBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-
                           SeventhBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-
                           EighthBlock(
                               alldata: alldata, firstlistitem: firstlistitem),
-
+                          NinthBlock(
+                              alldata: alldata, firstlistitem: firstlistitem),
                           //
                           ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: 2,
+                            itemCount: 3,
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  height: 160,
+                                  height: 32,
                                   color: Colors.grey[300],
                                 ),
                               );

@@ -1,6 +1,8 @@
-//todo Choose from cuisines block
+//todo {Choose from cuisines} block
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:foodwifi/refactors/skeletonBlock.dart';
 
 class FourthBlock extends StatelessWidget {
   const FourthBlock({
@@ -30,7 +32,7 @@ class FourthBlock extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    //! top of Choose from cuisines
+                    //! top of { Choose from cuisines}
                     padding: const EdgeInsets.only(top: 28.0, left: 16),
                     child: Row(
                       children: [
@@ -50,8 +52,8 @@ class FourthBlock extends StatelessWidget {
                         width: double.maxFinite,
                         height: double.maxFinite,
                         child: firstlistitem.isEmpty
-                            ? const Center(
-                                child: CircularProgressIndicator(),
+                            ? const Skeleton(
+                                height: 280,
                               )
                             : GridView.builder(
                                 scrollDirection: Axis.horizontal,
@@ -76,11 +78,22 @@ class FourthBlock extends StatelessWidget {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[3][index]!.img}',
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[3][index]!.img}',
                                               height: 100,
                                               width: 100,
                                               fit: BoxFit.cover,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      const Skeleton(
+                                                radius: 50,
+                                                height: 75,
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                           SizedBox(
@@ -116,7 +129,6 @@ class FourthBlock extends StatelessWidget {
                         //     ) {
                         //       return Padding(
                         //         padding:
-                        //             //!toofimagetajkirak
                         //             const EdgeInsets
                         //                     .only(
                         //                 top: 14,

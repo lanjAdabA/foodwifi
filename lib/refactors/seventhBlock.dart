@@ -1,6 +1,8 @@
 //todo {Popular for breakfast} block
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:foodwifi/refactors/skeletonBlock.dart';
 
 class SeventhBlock extends StatelessWidget {
   const SeventhBlock({
@@ -75,8 +77,9 @@ class SeventhBlock extends StatelessWidget {
                       height: double.maxFinite,
                       child: firstlistitem.isEmpty
                           ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
+                              child: Skeleton(
+                              height: 280,
+                            ))
                           : ListView.builder(
                               controller: PageController(viewportFraction: .09),
                               scrollDirection: Axis.horizontal,
@@ -89,9 +92,9 @@ class SeventhBlock extends StatelessWidget {
                               ) {
                                 return Padding(
                                   padding:
-                                      //!top_of_image_tajkirah
+                                      //!top_of_image
                                       const EdgeInsets.only(
-                                          top: 16, left: 16, right: 16),
+                                          top: 16, left: 16, right: 1),
                                   child: Container(
                                       color: Colors.white,
                                       child: Column(
@@ -101,11 +104,22 @@ class SeventhBlock extends StatelessWidget {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[6][index]!.img}',
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[6][index]!.img}',
                                               height: 182,
                                               width: 300,
                                               fit: BoxFit.cover,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      const Skeleton(
+                                                radius: 50,
+                                                height: 75,
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                           Padding(

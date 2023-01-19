@@ -1,6 +1,8 @@
-//todo new on foodwifi block
+//todo {new on foodwifi} block
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:foodwifi/refactors/skeletonBlock.dart';
 
 class FifthBlock extends StatelessWidget {
   const FifthBlock({
@@ -30,7 +32,7 @@ class FifthBlock extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    //! top of new on foodwifi
+                    //! top of { new on foodwifi}
                     padding: const EdgeInsets.only(top: 28.0, left: 16),
                     child: Row(
                       children: [
@@ -59,8 +61,8 @@ class FifthBlock extends StatelessWidget {
                       width: double.maxFinite,
                       height: double.maxFinite,
                       child: firstlistitem.isEmpty
-                          ? const Center(
-                              child: CircularProgressIndicator(),
+                          ? const Skeleton(
+                              height: 300,
                             )
                           : ListView.builder(
                               controller:
@@ -75,7 +77,7 @@ class FifthBlock extends StatelessWidget {
                               ) {
                                 return Padding(
                                   padding:
-                                      //!top_of_image_tajkirah
+                                      //!top_of_{new on foodwifi}
                                       const EdgeInsets.only(
                                           top: 14, left: 16, right: 1),
                                   child: Container(
@@ -87,11 +89,22 @@ class FifthBlock extends StatelessWidget {
                                           ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(10),
-                                            child: Image.network(
-                                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[4][index]!.img}',
+                                            child: CachedNetworkImage(
+                                              imageUrl:
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[4][index]!.img}',
                                               height: 180,
                                               width: 180,
                                               fit: BoxFit.cover,
+                                              progressIndicatorBuilder:
+                                                  (context, url,
+                                                          downloadProgress) =>
+                                                      const Skeleton(
+                                                radius: 50,
+                                                height: 75,
+                                              ),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
                                             ),
                                           ),
                                           Padding(

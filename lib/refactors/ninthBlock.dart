@@ -1,11 +1,11 @@
-//todo {Imphal's most fav} block
+//todo {People's pick for dinner} block
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
 
-class SixthBlock extends StatelessWidget {
-  const SixthBlock({
+class NinthBlock extends StatelessWidget {
+  const NinthBlock({
     Key? key,
     required this.alldata,
     required this.firstlistitem,
@@ -32,7 +32,7 @@ class SixthBlock extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    //! top of Imphal's most fav
+                    //! top of {People's pick for dinner}
                     padding: const EdgeInsets.only(top: 28.0, left: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +40,7 @@ class SixthBlock extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              alldata[5].title!,
+                              alldata[8].title!,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
@@ -62,7 +62,7 @@ class SixthBlock extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          alldata[5].description!,
+                          alldata[8].description!,
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 12,
@@ -76,20 +76,24 @@ class SixthBlock extends StatelessWidget {
                       width: double.maxFinite,
                       height: double.maxFinite,
                       child: firstlistitem.isEmpty
-                          ? Skeleton(height: 280)
+                          ? const Center(
+                              child: Skeleton(
+                                height: 280,
+                              ),
+                            )
                           : ListView.builder(
                               controller: PageController(viewportFraction: .09),
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              itemCount: firstlistitem[5].length,
+                              itemCount: firstlistitem[8].length,
                               itemBuilder: ((
                                 context,
                                 index,
                               ) {
                                 return Padding(
                                   padding:
-                                      //!top_of_image
+                                      //!top_of_{People's pick for dinner}
                                       const EdgeInsets.only(
                                           top: 16, left: 16, right: 1),
                                   child: Container(
@@ -103,7 +107,7 @@ class SixthBlock extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[5][index]!.img}',
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[8][index]!.img}',
                                               height: 182,
                                               width: 333,
                                               fit: BoxFit.cover,
@@ -134,7 +138,7 @@ class SixthBlock extends StatelessWidget {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        firstlistitem[5][index]!
+                                                        firstlistitem[8][index]!
                                                             .title!,
                                                         style: TextStyle(
                                                             fontWeight:
@@ -142,9 +146,10 @@ class SixthBlock extends StatelessWidget {
                                                             fontSize: 12),
                                                       ),
                                                       Icon(
-                                                          Icons
-                                                              .favorite_outline,
-                                                          size: 14)
+                                                        Icons
+                                                            .favorite_border_outlined,
+                                                        size: 16,
+                                                      )
                                                     ],
                                                   ),
                                                 ),
@@ -152,12 +157,12 @@ class SixthBlock extends StatelessWidget {
                                                   height: 6,
                                                 ),
 
-                                                firstlistitem[5][index]!
+                                                firstlistitem[8][index]!
                                                             .description ==
                                                         null
                                                     ? SizedBox()
                                                     : Text(
-                                                        firstlistitem[5][index]!
+                                                        firstlistitem[8][index]!
                                                             .description!,
                                                         style: TextStyle(
                                                             fontWeight:
@@ -172,72 +177,95 @@ class SixthBlock extends StatelessWidget {
                                                   // crossAxisAlignment:
                                                   //     CrossAxisAlignment.end,
                                                   children: [
-                                                    Column(
-                                                      children: [
-                                                        Icon(
-                                                          Icons.star,
-                                                          color: Colors
-                                                              .yellow[800],
-                                                          size: 11,
-                                                        ),
-                                                        SizedBox(
-                                                          height: 2,
-                                                        )
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      width: 2,
-                                                    ),
-                                                    Text(
-                                                      firstlistitem[5][index]!
-                                                          .rating
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color:
-                                                              Colors.grey[700]),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              2.0),
-                                                      child: Icon(
-                                                        Icons.circle,
-                                                        size: 2,
+                                                    Container(
+                                                      width: 333,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Column(
+                                                                children: [
+                                                                  Icon(
+                                                                    Icons.star,
+                                                                    color: Colors
+                                                                            .yellow[
+                                                                        800],
+                                                                    size: 11,
+                                                                  ),
+                                                                  SizedBox(
+                                                                    height: 2,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              SizedBox(
+                                                                width: 2,
+                                                              ),
+                                                              Text(
+                                                                firstlistitem[8]
+                                                                        [index]!
+                                                                    .rating
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        10,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        700]),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                firstlistitem[8]
+                                                                        [index]!
+                                                                    .time
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        10,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        700]),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        2.0),
+                                                                child: Icon(
+                                                                  Icons.circle,
+                                                                  size: 2,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                firstlistitem[8]
+                                                                        [index]!
+                                                                    .distance
+                                                                    .toString(),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        10,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        700]),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        ],
                                                       ),
-                                                    ),
-                                                    Text(
-                                                      firstlistitem[5][index]!
-                                                          .time
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color:
-                                                              Colors.grey[700]),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              2.0),
-                                                      child: Icon(
-                                                        Icons.circle,
-                                                        size: 2,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      firstlistitem[5][index]!
-                                                          .distance
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color:
-                                                              Colors.grey[700]),
                                                     ),
                                                   ],
                                                 ),
