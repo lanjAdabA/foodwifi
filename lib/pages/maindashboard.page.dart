@@ -14,6 +14,7 @@ import 'package:foodwifi/refactors/seventhBlock.dart';
 import 'package:foodwifi/refactors/sixthBlock.dart';
 import 'package:foodwifi/refactors/sliverAppBar.dart';
 import 'package:foodwifi/refactors/thirdBlock.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeDashboardPage extends StatefulWidget {
   const HomeDashboardPage({super.key});
@@ -37,7 +38,11 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
         backgroundColor: Colors.grey[200],
         body: alldata.isEmpty
             ? Center(
-                child: CircularProgressIndicator(),
+                child: LoadingAnimationWidget.twistingDots(
+                  // color: Colors.grey,
+                  size: 26, leftDotColor: Colors.red,
+                  rightDotColor: Colors.blue,
+                ),
               )
             : SafeArea(
                 child: CustomScrollView(

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:foodwifi/provider/muitiblocprovider.wrapper.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'router/router.gr.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent, // transparent status bar
+  ));
+
   runApp(MyApp());
 }
 

@@ -14,7 +14,7 @@ class FetchdatablocCubit extends Cubit<FetchDataState> {
   }
 
   Future<List<Foodwifimodel>?> Get_alldata() async {
-    List<Item?> data2 = [];
+    // List<Item?> data2 = [];
     try {
       final queryParameters = {
         'lat': '24.805823',

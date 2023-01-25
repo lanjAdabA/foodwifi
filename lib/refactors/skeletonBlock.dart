@@ -24,7 +24,7 @@ class Skeleton extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.3),
             borderRadius: BorderRadius.all(
-                Radius.circular(radius == null ? 10 : radius!))),
+                Radius.circular(radius == null ? 6 : radius!))),
       ),
     );
   }

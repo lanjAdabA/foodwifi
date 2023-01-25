@@ -82,7 +82,10 @@ class ThirdBlock extends StatelessWidget {
                                 return InkWell(
                                   onTap: () {
                                     log("clicked on restaurants block");
-                                    context.router.push(RestaurantRoute());
+                                    context.router.push(RestaurantRoute(
+                                        id: firstlistitem[2][index]!
+                                            .id
+                                            .toString()));
                                   },
                                   child: Padding(
                                     padding:

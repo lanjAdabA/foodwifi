@@ -4,65 +4,103 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:foodwifi/model/restaurantspage.model.dart';
 
+import '../model/review.model.dart';
+
 //? ServiceApi_restaurantPage
+class ServiceApi {
+  Future<RestaurantsPageModel?> getRestaurantsProductData({String? id}) async {
+    try {
+      final queryParameters = {
+        'lat': '24.805823',
+        'lng': '93.942931',
+      };
+      if (id != null) {
+        log('Id: ${id.toString()}');
+        final baseHeader = {'Branchid': "1"};
+        final response = await http.get(
+            Uri.http(
+                'app.myfoodwifi.com', '/api/restaurants/$id', queryParameters),
+            headers: baseHeader);
 
-Future<RestaurantsPageModel?> getRestaurantsProductData({String? id}) async {
-  try {
-    final queryParameters = {
-      'lat': '24.805823',
-      'lng': '93.942931',
-    };
-    if (id != null) {
-      log('Id: ${id.toString()}');
-      final baseHeader = {'Branchid': "1"};
-      final response = await http.get(
-          Uri.http(
-              'app.myfoodwifi.com', '/api/restaurants/$id', queryParameters),
-          headers: baseHeader);
+        var data = jsonDecode(response.body) as Map<String, dynamic>;
 
-      var data = jsonDecode(response.body) as Map<String, dynamic>;
+        if (response.statusCode == 200) {
+          var restaurantsdata = RestaurantsPageModel.fromJson(data);
 
-      if (response.statusCode == 200) {
-        var rastaurantsdata = RestaurantsPageModel.fromJson(data);
+          log(restaurantsdata.title.toString());
 
-        log(rastaurantsdata.title.toString());
-
-        log('Successfully get Data');
-        return rastaurantsdata;
-      } else {
-        log('Failed to Getdata.');
+          log('Successfully get ResturantPageData');
+          return restaurantsdata;
+        } else {
+          log('Failed to get ResturantPageData.');
+        }
       }
-    }
-  } catch (e) {
-    log('upper errror${e.toString()}');
-  }
-  return null;
-}
-
-Future<RestaurantsDetailsModel?> getrestaurantsdetaildata({String? id}) async {
-  try {
-    final queryParameters = {
-      'id': id,
-    };
-    final baseHeader = {'Branchid': "1"};
-    final response = await http.get(
-        Uri.http('app.myfoodwifi.com', '/api/restaurants/categoryproduct',
-            queryParameters),
-        headers: baseHeader);
-    var detaildata = jsonDecode(response.body) as Map<String, dynamic>;
-
-    if (response.statusCode == 200) {
-      var restaurantsdetaildata = RestaurantsDetailsModel.fromJson(detaildata);
-
-      log('Successfully get Data');
-      return restaurantsdetaildata;
-    } else {
-      log('Failed to Getdata.');
+    } catch (e) {
+      log('upper errror${e.toString()}');
     }
     return null;
-  } catch (e) {}
-  return null;
+  }
+
+  Future<List<RestaurantsDetailsModel?>?> getrestaurantsdetaildata(
+      {String? id}) async {
+    try {
+      final queryParameters = {
+        'id': id,
+      };
+      final baseHeader = {'Branchid': "1"};
+      final response = await http.get(
+          Uri.http('app.myfoodwifi.com', '/api/restaurants/categoryproduct',
+              queryParameters),
+          headers: baseHeader);
+      if (response.statusCode == 200) {
+        var detaildata = restaurantsDetailsModelFromJson(response.body);
+
+        log('Successfully get ResturantDetailData');
+        return detaildata;
+      } else {
+        log('Failed to get ResturantDetailData.');
+      }
+      return null;
+    } catch (e) {}
+    return null;
+  }
+
+  Future<ReviewModel?> getreviewdata({String? id}) async {
+    try {
+      final queryParameters = {
+        'id': id,
+      };
+      if (id != null) {
+        log('review Id: ${id.toString()}');
+        final baseHeader = {'Branchid': "1"};
+
+        final response = await http.get(
+            Uri.http('app.myfoodwifi.com', '/api/restaurants/reviewlist',
+                queryParameters),
+            headers: baseHeader);
+        log(response.statusCode.toString());
+
+        if (response.statusCode == 200) {
+          var restaurantsdata = reviewModelFromJson(response.body);
+
+          log(restaurantsdata.rating.toString());
+
+          log('Successfully get ReviewData');
+          return restaurantsdata;
+        } else {
+          log('Failed to get ReviewData.');
+        }
+        // return restaurantsdata
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return null;
+  }
 }
+
+
+
 // // ignore_for_file: file_names
 
 // import 'dart:convert';

@@ -2,6 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 import 'package:auto_route/annotations.dart';
+import 'package:foodwifi/pages/all_reviews.page.dart';
 import 'package:foodwifi/pages/maindashboard.page.dart';
 import 'package:foodwifi/pages/restaurants.page.dart';
 
@@ -10,8 +11,7 @@ import 'package:foodwifi/pages/restaurants.page.dart';
   routes: <AutoRoute>[
     AutoRoute(page: HomeDashboardPage, initial: true, children: []),
     AutoRoute(page: RestaurantPage),
-    // AutoRoute(page: DesignationPage),
-    // AutoRoute(page: DepartmentPage),
+    AutoRoute(page: AllReviewsPage),
   ],
 )
 class $AppRouter {}
