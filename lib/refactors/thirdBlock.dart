@@ -85,7 +85,9 @@ class ThirdBlock extends StatelessWidget {
                                     context.router.push(RestaurantRoute(
                                         id: firstlistitem[2][index]!
                                             .id
-                                            .toString()));
+                                            .toString(),
+                                        itemname:
+                                            firstlistitem[2][index]!.title!));
                                   },
                                   child: Padding(
                                     padding:
@@ -98,25 +100,91 @@ class ThirdBlock extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[2][index]!.img}',
-                                                height: 172,
-                                                width: 310,
-                                                fit: BoxFit.cover,
-                                                progressIndicatorBuilder:
-                                                    (context, url,
-                                                            downloadProgress) =>
-                                                        const Skeleton(
-                                                  height: 75,
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
+                                            Stack(
+                                              alignment: Alignment.topLeft,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl:
+                                                        'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[2][index]!.img}',
+                                                    height: 172,
+                                                    width: 310,
+                                                    fit: BoxFit.cover,
+                                                    progressIndicatorBuilder:
+                                                        (context, url,
+                                                                downloadProgress) =>
+                                                            const Skeleton(
+                                                      height: 75,
+                                                    ),
+                                                    errorWidget: (context, url,
+                                                            error) =>
                                                         const Icon(Icons.error),
-                                              ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, top: 10),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                    child: Container(
+                                                      height: 24,
+                                                      color: Color.fromARGB(
+                                                          255, 57, 137, 157),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(2),
+                                                        child: Row(
+                                                          children: [
+                                                            SizedBox(
+                                                              width: 6,
+                                                            ),
+                                                            Transform(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              transform: Matrix4
+                                                                  .rotationY(
+                                                                      60),
+                                                              child: const Icon(
+                                                                Icons
+                                                                    .local_offer,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 12,
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 5),
+                                                              child: Text(
+                                                                firstlistitem[2]
+                                                                        [index]!
+                                                                    .offerDescription!,
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        12),
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 6,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(

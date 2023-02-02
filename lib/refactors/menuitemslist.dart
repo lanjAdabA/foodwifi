@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:foodwifi/services/serviceApi.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MenuItemsList extends StatefulWidget {
   final String id;
-
-  const MenuItemsList({super.key, required this.id});
+  final ItemScrollController itemScrollController;
+  final ItemPositionsListener itemPositionsListener;
+  const MenuItemsList(
+      {super.key,
+      required this.id,
+      required this.itemScrollController,
+      required this.itemPositionsListener});
 
   @override
   State<MenuItemsList> createState() => _MenuItemsListState();
@@ -210,7 +216,8 @@ class _MenuItemsListState extends State<MenuItemsList> {
                                                               4),
                                                       child: Container(
                                                         height: 24,
-                                                        color: Colors.teal[700],
+                                                        color: Color.fromARGB(
+                                                            255, 57, 137, 157),
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets

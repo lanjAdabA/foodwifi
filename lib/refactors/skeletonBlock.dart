@@ -17,7 +17,7 @@ class Skeleton extends StatelessWidget {
       direction: ShimmerDirection.ltr,
 
       baseColor: Colors.grey,
-      highlightColor: Colors.white,
+      highlightColor: Color.fromARGB(255, 225, 219, 219),
       child: Container(
         height: height,
         width: width,

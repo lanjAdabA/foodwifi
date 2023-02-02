@@ -1,8 +1,10 @@
 //todo {Choose from cuisines} block
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
+import 'package:foodwifi/router/router.gr.dart';
 
 class FourthBlock extends StatelessWidget {
   const FourthBlock({
@@ -67,45 +69,51 @@ class FourthBlock extends StatelessWidget {
                                   context,
                                   index,
                                 ) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      color: Colors.white,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[3][index]!.img}',
-                                              height: 100,
-                                              width: 100,
-                                              fit: BoxFit.cover,
-                                              progressIndicatorBuilder:
-                                                  (context, url,
-                                                          downloadProgress) =>
-                                                      const Skeleton(
-                                                radius: 50,
-                                                height: 75,
+                                  return InkWell(
+                                    onTap: () {
+                                      context.router
+                                          .push(RestaurantSearchByItemRoute());
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        color: Colors.white,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[3][index]!.img}',
+                                                height: 100,
+                                                width: 100,
+                                                fit: BoxFit.cover,
+                                                progressIndicatorBuilder:
+                                                    (context, url,
+                                                            downloadProgress) =>
+                                                        const Skeleton(
+                                                  radius: 50,
+                                                  height: 75,
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(Icons.error),
                                               ),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      const Icon(Icons.error),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            height: 6,
-                                          ),
-                                          Text(
-                                            firstlistitem[3][index]!.title!,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10),
-                                          ),
-                                        ],
+                                            SizedBox(
+                                              height: 6,
+                                            ),
+                                            Text(
+                                              firstlistitem[3][index]!.title!,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 10),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   );

@@ -61,9 +61,14 @@ class _reviewBlockState extends State<reviewBlock> {
                             fontSize: 20,
                             color: Colors.black87),
                       ),
+                      // reviewdata == null
+                      //     ? Center(child: CircularProgressIndicator())
+                      //     :
                       InkWell(
                         onTap: () {
-                          context.router.push(AllReviewsRoute(id: widget.id));
+                          context.router.push(AllReviewsRoute(
+                            id: widget.id,
+                          ));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(

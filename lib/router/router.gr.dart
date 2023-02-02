@@ -11,38 +11,42 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i6;
+import 'package:flutter/material.dart' as _i7;
 
+import '../model/restaurantsdetails.model.dart' as _i8;
 import '../pages/all_reviews.page.dart' as _i3;
+import '../pages/itemDetail.page.dart' as _i5;
 import '../pages/maindashboard.page.dart' as _i1;
 import '../pages/restaurants.page.dart' as _i2;
+import '../pages/restaurantSearchByItem.page.dart' as _i4;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i6.RootStackRouter {
+  AppRouter([_i7.GlobalKey<_i7.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
+  final Map<String, _i6.PageFactory> pagesMap = {
     HomeDashboardRoute.name: (routeData) {
-      return _i4.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.HomeDashboardPage(),
       );
     },
     RestaurantRoute.name: (routeData) {
       final args = routeData.argsAs<RestaurantRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i2.RestaurantPage(
           key: args.key,
           id: args.id,
+          itemname: args.itemname,
         ),
       );
     },
     AllReviewsRoute.name: (routeData) {
       final args = routeData.argsAs<AllReviewsRouteArgs>();
-      return _i4.MaterialPageX<dynamic>(
+      return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i3.AllReviewsPage(
           key: args.key,
@@ -50,28 +54,52 @@ class AppRouter extends _i4.RootStackRouter {
         ),
       );
     },
+    RestaurantSearchByItemRoute.name: (routeData) {
+      return _i6.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i4.RestaurantSearchByItemPage(),
+      );
+    },
+    ProductDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductDetailRouteArgs>();
+      return _i6.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i5.ProductDetailPage(
+          key: args.key,
+          product: args.product,
+        ),
+      );
+    },
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(
+  List<_i6.RouteConfig> get routes => [
+        _i6.RouteConfig(
           HomeDashboardRoute.name,
           path: '/',
         ),
-        _i4.RouteConfig(
+        _i6.RouteConfig(
           RestaurantRoute.name,
           path: '/restaurant-page',
         ),
-        _i4.RouteConfig(
+        _i6.RouteConfig(
           AllReviewsRoute.name,
           path: '/all-reviews-page',
+        ),
+        _i6.RouteConfig(
+          RestaurantSearchByItemRoute.name,
+          path: '/restaurant-search-by-item-page',
+        ),
+        _i6.RouteConfig(
+          ProductDetailRoute.name,
+          path: '/product-detail-page',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.HomeDashboardPage]
-class HomeDashboardRoute extends _i4.PageRouteInfo<void> {
+class HomeDashboardRoute extends _i6.PageRouteInfo<void> {
   const HomeDashboardRoute()
       : super(
           HomeDashboardRoute.name,
@@ -83,16 +111,18 @@ class HomeDashboardRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.RestaurantPage]
-class RestaurantRoute extends _i4.PageRouteInfo<RestaurantRouteArgs> {
+class RestaurantRoute extends _i6.PageRouteInfo<RestaurantRouteArgs> {
   RestaurantRoute({
-    _i5.Key? key,
+    _i7.Key? key,
     required String id,
+    required String itemname,
   }) : super(
           RestaurantRoute.name,
           path: '/restaurant-page',
           args: RestaurantRouteArgs(
             key: key,
             id: id,
+            itemname: itemname,
           ),
         );
 
@@ -103,24 +133,27 @@ class RestaurantRouteArgs {
   const RestaurantRouteArgs({
     this.key,
     required this.id,
+    required this.itemname,
   });
 
-  final _i5.Key? key;
+  final _i7.Key? key;
 
   final String id;
 
+  final String itemname;
+
   @override
   String toString() {
-    return 'RestaurantRouteArgs{key: $key, id: $id}';
+    return 'RestaurantRouteArgs{key: $key, id: $id, itemname: $itemname}';
   }
 }
 
 /// generated route for
 /// [_i3.AllReviewsPage]
-class AllReviewsRoute extends _i4.PageRouteInfo<AllReviewsRouteArgs> {
+class AllReviewsRoute extends _i6.PageRouteInfo<AllReviewsRouteArgs> {
   AllReviewsRoute({
-    _i5.Key? key,
-    required String id,
+    _i7.Key? key,
+    required String? id,
   }) : super(
           AllReviewsRoute.name,
           path: '/all-reviews-page',
@@ -139,12 +172,58 @@ class AllReviewsRouteArgs {
     required this.id,
   });
 
-  final _i5.Key? key;
+  final _i7.Key? key;
 
-  final String id;
+  final String? id;
 
   @override
   String toString() {
     return 'AllReviewsRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
+/// [_i4.RestaurantSearchByItemPage]
+class RestaurantSearchByItemRoute extends _i6.PageRouteInfo<void> {
+  const RestaurantSearchByItemRoute()
+      : super(
+          RestaurantSearchByItemRoute.name,
+          path: '/restaurant-search-by-item-page',
+        );
+
+  static const String name = 'RestaurantSearchByItemRoute';
+}
+
+/// generated route for
+/// [_i5.ProductDetailPage]
+class ProductDetailRoute extends _i6.PageRouteInfo<ProductDetailRouteArgs> {
+  ProductDetailRoute({
+    _i7.Key? key,
+    required _i8.Product product,
+  }) : super(
+          ProductDetailRoute.name,
+          path: '/product-detail-page',
+          args: ProductDetailRouteArgs(
+            key: key,
+            product: product,
+          ),
+        );
+
+  static const String name = 'ProductDetailRoute';
+}
+
+class ProductDetailRouteArgs {
+  const ProductDetailRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final _i7.Key? key;
+
+  final _i8.Product product;
+
+  @override
+  String toString() {
+    return 'ProductDetailRouteArgs{key: $key, product: $product}';
   }
 }

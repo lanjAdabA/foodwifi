@@ -1,3 +1,5 @@
+//! main dashboard cubit
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -57,9 +59,6 @@ class FetchdatablocCubit extends Cubit<FetchDataState> {
   }
 }
 
-
-
-
 // // ignore_for_file: depend_on_referenced_packages
 
 // import 'dart:convert';
@@ -79,15 +78,11 @@ class FetchdatablocCubit extends Cubit<FetchDataState> {
 
 //   Future<List<Foodwifidashmodel>?> getAllData() async {
 
-    
 //     final response = await http.get(Uri.parse(
 //         "http://app.myfoodwifi.com/api/sites/getbranchcollection?lat= 24.805823&lng=93.942931"));
 //     final data = jsonDecode(response.body) as List;
 //     if (response.statusCode == 200) {
 //       var users = data.map((e) => Foodwifidashmodel.fromJson(e)).toList();
-
-
-
 
 //       log("Data successfully fetched");
 //       emit(FetchDataState(alldata: users));
