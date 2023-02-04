@@ -11,9 +11,9 @@ import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:foodwifi/model/restaurantspage.model.dart';
 import 'package:foodwifi/refactors/FloatingCard.dart';
 import 'package:foodwifi/refactors/menuItemlistblock.dart';
-import 'package:foodwifi/refactors/menu_item_list_first.dart';
 // import 'package:foodwifi/refactors/finalReturnListFiltered.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
+import 'package:foodwifi/refactors/vegonlylist.dart';
 import 'package:foodwifi/services/serviceApi.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -74,6 +74,9 @@ class _RestaurantPageState extends State<RestaurantPage> {
   void initState() {
     super.initState();
     getdata();
+    context
+        .read<RestaurantsMenuListCubit>()
+        .getrestaurantsdetaildata(id: widget.id);
 
     controller.addListener(() {
       if (controller.hasClients && controller.offset > 700) {
@@ -95,12 +98,9 @@ class _RestaurantPageState extends State<RestaurantPage> {
   getdata() async {
     var allrestaurantsdata =
         await ServiceApi().getRestaurantsProductData(id: widget.id);
-    var restaurantsdatadetails =
-        await ServiceApi().getrestaurantsdetaildata(id: widget.id);
 
     setState(() {
       alldata = allrestaurantsdata;
-      restaurantdata = restaurantsdatadetails;
     });
   }
 
@@ -109,10 +109,9 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
     List<RestaurantsDetailsModel?>? allbelowdata = allproductbelowdata.alldata;
     List<ReviewModalModified?>? allvegdatalist = allproductbelowdata.vegdata;
-    List<RestaurantsDetailsModel?>? allbelowdataoneitem =
-        allproductbelowdata.oneitem;
-    List<ReviewModalModified?>? newallbelowdataoneitem =
+    List<ReviewModalModified?>? allbelowitems =
         allproductbelowdata.allbelowitems;
+
     List<RestaurantsDetailsModel?>? originalbelowdata =
         allproductbelowdata.orialldata;
 
@@ -290,16 +289,22 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                         shrinkWrap: true,
                                                         itemBuilder:
                                                             ((context, index) {
-                                                          return MenuItemsListFirst(
-                                                            id: widget.id,
-                                                            restaurantdata:
-                                                                allvegdatalist,
-                                                            ind: index,
-                                                            // allvegdatalist:
-                                                            //     allvegdatalist,
-                                                            // ind: index,
-                                                            // id: widget.id,
-                                                          );
+                                                          return VegetableonlyListPage(
+                                                              allvegdatalist:
+                                                                  allvegdatalist,
+                                                              ind: index,
+                                                              id: widget.id);
+
+                                                          // return MenuItemsListFirst(
+                                                          //   id: widget.id,
+                                                          //   restaurantdata:
+                                                          //       allvegdatalist,
+                                                          //   ind: index,
+                                                          //   // allvegdatalist:
+                                                          //   //     allvegdatalist,
+                                                          //   // ind: index,
+                                                          //   // id: widget.id,
+                                                          // );
                                                         })),
                                                   )
                                                 ],
@@ -355,13 +360,12 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                       padding: EdgeInsets.zero,
                                                       shrinkWrap: true,
                                                       itemCount:
-                                                          newallbelowdataoneitem
-                                                              .length,
+                                                          allbelowitems.length,
                                                       itemBuilder:
                                                           (context, index) {
                                                         return MenuItemList(
                                                           allbelowdata:
-                                                              newallbelowdataoneitem,
+                                                              allbelowitems,
                                                           nameindex: index,
                                                           id: widget.id,
                                                         );

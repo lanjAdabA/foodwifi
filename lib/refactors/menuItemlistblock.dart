@@ -2,14 +2,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:foodwifi/model/allbelowmodel.dart';
 import 'package:foodwifi/model/restaurantsdetails.model.dart';
+import 'package:foodwifi/refactors/reviewBlock.dart';
 import 'package:foodwifi/router/router.gr.dart';
 
 class MenuItemList extends StatefulWidget {
-  const MenuItemList(
-      {super.key,
-      required List<ReviewModalModified?> allbelowdata,
-      required int nameindex,
-      required String id});
+  final List<ReviewModalModified?> allbelowdata;
+  final int nameindex;
+  final String id;
+  const MenuItemList({
+    super.key,
+    required this.allbelowdata,
+    required this.nameindex,
+    required this.id,
+  });
 
   @override
   State<MenuItemList> createState() => _MenuItemListState();
@@ -20,13 +25,9 @@ class _MenuItemListState extends State<MenuItemList> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 1,
-      itemBuilder: ((context, nameindex) {
-        return Padding(
+    return Column(
+      children: [
+        Padding(
           padding: const EdgeInsets.only(bottom: 6),
           child: Container(
             color: Colors.white,
@@ -39,7 +40,7 @@ class _MenuItemListState extends State<MenuItemList> {
                   ),
                   Text(
                     // 'try',
-                    restaurantdata![nameindex]!.categoryName,
+                    widget.allbelowdata[widget.nameindex]!.categoryName,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                   Padding(
@@ -49,7 +50,8 @@ class _MenuItemListState extends State<MenuItemList> {
                         ListView.separated(
                       // padding: EdgeInsets.all(1),
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: restaurantdata![nameindex]!.products.length,
+                      itemCount: widget
+                          .allbelowdata[widget.nameindex]!.products.length,
                       shrinkWrap: true,
                       itemBuilder: ((context, itemindex) {
                         return InkWell(
@@ -57,7 +59,7 @@ class _MenuItemListState extends State<MenuItemList> {
                           onTap: () {
                             context.router.push(
                               ProductDetailRoute(
-                                product: restaurantdata![nameindex]!
+                                product: widget.allbelowdata[widget.nameindex]!
                                     .products[itemindex],
                               ),
                             );
@@ -70,9 +72,8 @@ class _MenuItemListState extends State<MenuItemList> {
                                 Stack(
                                   alignment: Alignment.topRight,
                                   children: [
-                                    restaurantdata![nameindex]!
-                                            .products[itemindex]
-                                            .img
+                                    widget.allbelowdata[widget.nameindex]!
+                                            .products[itemindex].img
                                             .toString()
                                             .isEmpty
                                         ? SizedBox(
@@ -100,15 +101,14 @@ class _MenuItemListState extends State<MenuItemList> {
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                   child: Image.network(
-                                                      'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${restaurantdata![nameindex]!.products[itemindex].img}')),
+                                                      'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${widget.allbelowdata[widget.nameindex]!.products[itemindex].img}')),
                                             ),
                                           ),
                                     Padding(
                                       padding: const EdgeInsets.all(5),
                                       child: Image.asset(
-                                        restaurantdata![nameindex]!
-                                                    .products[itemindex]
-                                                    .type ==
+                                        widget.allbelowdata[widget.nameindex]!
+                                                    .products[itemindex].type ==
                                                 'non_veg'
                                             ? 'assets/images/nonveglogo.png'
                                             : 'assets/images/veglogo.png',
@@ -127,9 +127,8 @@ class _MenuItemListState extends State<MenuItemList> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          restaurantdata![nameindex]!
-                                              .products[itemindex]
-                                              .name,
+                                          widget.allbelowdata[widget.nameindex]!
+                                              .products[itemindex].name!,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400),
                                         ),
@@ -139,9 +138,11 @@ class _MenuItemListState extends State<MenuItemList> {
                                             padding:
                                                 const EdgeInsets.only(top: 4.0),
                                             child: Text(
-                                              restaurantdata![nameindex]!
+                                              widget
+                                                  .allbelowdata[
+                                                      widget.nameindex]!
                                                   .products[itemindex]
-                                                  .description,
+                                                  .description!,
                                               style: TextStyle(
                                                   fontSize: 13,
                                                   fontWeight: FontWeight.w400,
@@ -167,7 +168,9 @@ class _MenuItemListState extends State<MenuItemList> {
                                                             FontWeight.w500),
                                                   ),
                                                   Text(
-                                                    restaurantdata![nameindex]!
+                                                    widget
+                                                        .allbelowdata[
+                                                            widget.nameindex]!
                                                         .products[itemindex]
                                                         .price
                                                         .toString(),
@@ -180,7 +183,7 @@ class _MenuItemListState extends State<MenuItemList> {
                                                     width: 10,
                                                   ),
                                                   Text(
-                                                    '₹${restaurantdata![nameindex]!.products[itemindex].offer.offerPrice.toString()}',
+                                                    '₹${widget.allbelowdata[widget.nameindex]!.products[itemindex].offer!.offerPrice.toString()}',
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600),
@@ -224,11 +227,13 @@ class _MenuItemListState extends State<MenuItemList> {
                                                                         .only(
                                                                     left: 5),
                                                             child: Text(
-                                                              restaurantdata![
-                                                                      nameindex]!
+                                                              widget
+                                                                  .allbelowdata[
+                                                                      widget
+                                                                          .nameindex]!
                                                                   .products[
                                                                       itemindex]
-                                                                  .offer
+                                                                  .offer!
                                                                   .description
                                                                   .toString(),
                                                               style: TextStyle(
@@ -269,8 +274,14 @@ class _MenuItemListState extends State<MenuItemList> {
               ),
             ),
           ),
-        );
-      }),
+        ),
+        widget.allbelowdata[widget.nameindex]!.reviewdata == null
+            ? Container()
+            : reviewBlock(
+                reviewdata: widget.allbelowdata[widget.nameindex]!.reviewdata,
+                id: widget.id,
+              ),
+      ],
     );
   }
 }

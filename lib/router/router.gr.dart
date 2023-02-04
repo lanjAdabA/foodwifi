@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 
-import '../model/restaurantsdetails.model.dart' as _i8;
+import '../model/allbelowmodel.dart' as _i8;
 import '../pages/all_reviews.page.dart' as _i3;
 import '../pages/itemDetail.page.dart' as _i5;
 import '../pages/maindashboard.page.dart' as _i1;

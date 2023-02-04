@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/item_details/cubit/item_detailed_cubit.dart';
-import 'package:foodwifi/model/restaurantsdetails.model.dart';
+import 'package:foodwifi/model/allbelowmodel.dart';
 
 import '../refactors/skeletonBlock.dart';
 
@@ -84,7 +84,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.product.name,
+                            widget.product.name!,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w700,
@@ -102,7 +102,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 width: 10,
                               ),
                               Text(
-                                '₹${widget.product.offer.offerPrice.toString()}',
+                                '₹${widget.product.offer!.offerPrice.toString()}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 18),
                               ),
@@ -141,7 +141,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         left: 5,
                                       ),
                                       child: Text(
-                                        widget.product.offer.description
+                                        widget.product.offer!.description
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 11),
@@ -158,7 +158,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, top: 7),
-                      child: Text(widget.product.description),
+                      child: Text(widget.product.description!),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),

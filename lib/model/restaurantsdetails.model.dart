@@ -22,15 +22,15 @@ class RestaurantsDetailsModel {
   final int categoryId;
   final bool stock;
   final String categoryName;
-  final List<Product> products;
+  final List<Product2> products;
 
   factory RestaurantsDetailsModel.fromJson(Map<String, dynamic> json) =>
       RestaurantsDetailsModel(
         categoryId: json["category_id"],
         stock: json["stock"],
         categoryName: json["category_name"],
-        products: List<Product>.from(
-            json["products"].map((x) => Product.fromJson(x))),
+        products: List<Product2>.from(
+            json["products"].map((x) => Product2.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,8 +41,8 @@ class RestaurantsDetailsModel {
       };
 }
 
-class Product {
-  Product({
+class Product2 {
+  Product2({
     required this.id,
     required this.name,
     required this.stock,
@@ -70,7 +70,7 @@ class Product {
   final List<dynamic> tags;
   final bool customizable;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  factory Product2.fromJson(Map<String, dynamic> json) => Product2(
         id: json["id"],
         name: json["name"],
         stock: json["stock"],
