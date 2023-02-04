@@ -35,7 +35,7 @@ class ResturantSearchByItemModel {
   final int slno;
   final String type;
   final String title;
-  final String img;
+  final String? img;
   final String description;
   final double distanceOnly;
   final String distance;
@@ -44,7 +44,7 @@ class ResturantSearchByItemModel {
   final int offer;
   final String offerUpto;
   final bool showOfferBadge;
-  final dynamic topBadge;
+  final String? topBadge;
   final List<Item> items;
   final bool rounded;
 
@@ -100,7 +100,7 @@ class Item {
 
   final int productId;
   final String name;
-  final String image;
+  final String? image;
   final double price;
   final double offerPrice;
   final bool isOffer;

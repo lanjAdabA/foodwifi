@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/allReviews/cubit/all_reviews_cubit.dart';
 import 'package:foodwifi/logics/cubit/fetch_data_cubit.dart';
 import 'package:foodwifi/logics/item_details/cubit/item_detailed_cubit.dart';
+import 'package:foodwifi/logics/restaurantsMenuDetails/cubit/restaurants_menu_list_cubit.dart';
+import 'package:foodwifi/logics/searchResturantByItem/cubit/search_resturant_by_item_cubit.dart';
 
 class MultiproviderWrapper extends StatelessWidget {
   final Widget child;
@@ -19,6 +21,12 @@ class MultiproviderWrapper extends StatelessWidget {
       ),
       BlocProvider(
         create: (context) => ItemDetailedCubit(),
+      ),
+      BlocProvider(
+        create: (context) => SearchResturantByItemCubit(),
+      ),
+      BlocProvider(
+        create: (context) => RestaurantsMenuListCubit(),
       ),
     ], child: child);
   }

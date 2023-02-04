@@ -71,8 +71,10 @@ class FourthBlock extends StatelessWidget {
                                 ) {
                                   return InkWell(
                                     onTap: () {
-                                      context.router
-                                          .push(RestaurantSearchByItemRoute());
+                                      context.router.push(
+                                          RestaurantSearchByItemRoute(
+                                              itemname: firstlistitem[3][index]!
+                                                  .title!));
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),

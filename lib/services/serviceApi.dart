@@ -1,3 +1,4 @@
+import 'package:foodwifi/model/allreviews.model.dart';
 import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -43,6 +44,7 @@ class ServiceApi {
   }
 
 //!Restaurants_Menu_Model
+//?  changed to cubit
   Future<List<RestaurantsDetailsModel?>?> getrestaurantsdetaildata(
       {String? id}) async {
     try {
@@ -97,6 +99,33 @@ class ServiceApi {
       }
     } catch (e) {
       log(e.toString());
+    }
+    return null;
+  }
+
+  Future<Map<String, dynamic>?> getcustomerreview(String id) async {
+    try {
+      final queryParameters = {
+        'id': id,
+      };
+      log('Id: ${id.toString()}');
+      final baseHeader = {'Branchid': "1"};
+      final response = await http.get(
+          Uri.http('app.myfoodwifi.com', '/api/restaurants/reviewlist',
+              queryParameters),
+          headers: baseHeader);
+      log(response.statusCode.toString());
+      if (response.statusCode == 200) {
+        var reviewdata = allReviewsModelFromJson(response.body);
+        var finaldata = reviewdata.toJson();
+
+        log('Successfully get re Data');
+        return finaldata;
+      } else {
+        log('Failed to Getdata.');
+      }
+    } catch (e) {
+      log('review errror${e.toString()}');
     }
     return null;
   }

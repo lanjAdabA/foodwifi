@@ -4,12 +4,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:foodwifi/logics/restaurantsMenuDetails/cubit/restaurants_menu_list_cubit.dart';
+import 'package:foodwifi/model/allbelowmodel.dart';
 import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:foodwifi/model/restaurantspage.model.dart';
 import 'package:foodwifi/refactors/FloatingCard.dart';
+import 'package:foodwifi/refactors/menuItemlistblock.dart';
 import 'package:foodwifi/refactors/menu_item_list_first.dart';
-import 'package:foodwifi/refactors/menuitemslist.dart';
-import 'package:foodwifi/refactors/reviewBlock.dart';
+// import 'package:foodwifi/refactors/finalReturnListFiltered.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
 import 'package:foodwifi/services/serviceApi.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -102,6 +105,17 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 
   Widget build(BuildContext context) {
+    final allproductbelowdata = context.watch<RestaurantsMenuListCubit>().state;
+
+    List<RestaurantsDetailsModel?>? allbelowdata = allproductbelowdata.alldata;
+    List<ReviewModalModified?>? allvegdatalist = allproductbelowdata.vegdata;
+    List<RestaurantsDetailsModel?>? allbelowdataoneitem =
+        allproductbelowdata.oneitem;
+    List<ReviewModalModified?>? newallbelowdataoneitem =
+        allproductbelowdata.allbelowitems;
+    List<RestaurantsDetailsModel?>? originalbelowdata =
+        allproductbelowdata.orialldata;
+
     return Scaffold(
       body: alldata == null
           ? Center(
@@ -200,7 +214,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                       //! scroll controller is disabled in debugging as its laggy in debug mode
                       // controller: controller,
                       clipBehavior: Clip.none,
-                      physics: const BouncingScrollPhysics(),
+                      // physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
                           //! <_{floating card}
@@ -258,26 +272,127 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                           height: 52,
                                           color: Colors.white,
                                         ),
+                                        isSwitched
+                                            ? Column(
+                                                children: [
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height,
+                                                    child: ListView.builder(
+                                                        physics: showappbar
+                                                            ? const BouncingScrollPhysics()
+                                                            : const NeverScrollableScrollPhysics(),
+                                                        itemCount:
+                                                            allvegdatalist
+                                                                .length,
+                                                        shrinkWrap: true,
+                                                        itemBuilder:
+                                                            ((context, index) {
+                                                          return MenuItemsListFirst(
+                                                            id: widget.id,
+                                                            restaurantdata:
+                                                                allvegdatalist,
+                                                            ind: index,
+                                                            // allvegdatalist:
+                                                            //     allvegdatalist,
+                                                            // ind: index,
+                                                            // id: widget.id,
+                                                          );
+                                                        })),
+                                                  )
+                                                ],
+                                              )
+                                            : Column(
+                                                children: [
+                                                  SizedBox(
+                                                    // height:
+                                                    //     MediaQuery.of(context)
+                                                    //         .size
+                                                    //         .height,
+                                                    //!
+                                                    // child: NotificationListener<
+                                                    //     UserScrollNotification>(
+                                                    //   onNotification: (notification) {
+                                                    //     direction =
+                                                    //         notification.direction;
+                                                    //     progress = notification
+                                                    //         .metrics.pixels;
+                                                    //     log('Pixels :${notification.metrics.pixels}');
+                                                    //     log('max scroll index :${notification.metrics.maxScrollExtent}');
+
+                                                    //     if (direction ==
+                                                    //         ScrollDirection.reverse) {
+                                                    //       log('down');
+
+                                                    //       setState(() {
+                                                    //         showappbar = true;
+                                                    //       });
+                                                    //     } else if (direction ==
+                                                    //         ScrollDirection.forward) {
+                                                    //       if (progress == 0) {
+                                                    //         setState(() {
+                                                    //           showappbar = false;
+                                                    //         });
+                                                    //       }
+                                                    //     }
+
+                                                    //     log('Progress :$progress');
+
+                                                    //     return true;
+                                                    //   },
+                                                    child:
+                                                        ScrollablePositionedList
+                                                            .builder(
+                                                      itemPositionsListener:
+                                                          itemPositionsListener,
+                                                      itemScrollController:
+                                                          itemScrollController,
+                                                      physics: showappbar
+                                                          ? const AlwaysScrollableScrollPhysics()
+                                                          : const NeverScrollableScrollPhysics(),
+                                                      padding: EdgeInsets.zero,
+                                                      shrinkWrap: true,
+                                                      itemCount:
+                                                          newallbelowdataoneitem
+                                                              .length,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        return MenuItemList(
+                                                          allbelowdata:
+                                                              newallbelowdataoneitem,
+                                                          nameindex: index,
+                                                          id: widget.id,
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                  // ),
+                                                ],
+                                              )
+
                                         //todo {non_veg item filtered}
-                                        MenuItemsListFirst(
-                                          id: widget.id,
-                                        ),
+                                        // MenuItemsListFirst(
+                                        //   id: widget.id,
 
-                                        //Todo {What people say}
+                                        , // ),
 
-                                        reviewBlock(
-                                          id: widget.id,
-                                        ),
+                                        // //Todo {What people say}
 
-                                        //!{_restaurant menu item part}
+                                        // reviewBlock(
+                                        //   id: widget.id,
+                                        // ),
 
-                                        MenuItemsList(
-                                          id: widget.id,
-                                          itemPositionsListener:
-                                              itemPositionsListener,
-                                          itemScrollController:
-                                              itemScrollController,
-                                        ),
+                                        // //!{_restaurant menu item part}
+
+                                        // MenuItemsList(
+                                        //   id: widget.id,
+                                        //   itemPositionsListener:
+                                        //       itemPositionsListener,
+                                        //   itemScrollController:
+                                        //       itemScrollController,
+                                        // ),
                                       ],
                                     )),
                               ],

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodwifi/provider/muitiblocprovider.wrapper.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-
-import 'router/router.gr.dart';
+import 'package:foodwifi/router/router.gr.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
         routeInformationParser: _appRouter.defaultRouteParser(),
         theme: ThemeData(
           primaryColor: Colors.grey,
-          // useMaterial3: true
+          //  useMaterial3: true
         ),
         builder: EasyLoading.init(),
       ),

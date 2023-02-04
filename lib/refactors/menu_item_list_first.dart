@@ -2,6 +2,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:foodwifi/model/allbelowmodel.dart';
 import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:foodwifi/refactors/menuitem%20skeleton.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
@@ -11,7 +12,11 @@ import 'package:foodwifi/services/serviceApi.dart';
 class MenuItemsListFirst extends StatefulWidget {
   final String id;
 
-  const MenuItemsListFirst({super.key, required this.id});
+  const MenuItemsListFirst(
+      {super.key,
+      required this.id,
+      required List<ReviewModalModified?> restaurantdata,
+      required int ind});
 
   @override
   State<MenuItemsListFirst> createState() => _MenuItemsListFirstState();

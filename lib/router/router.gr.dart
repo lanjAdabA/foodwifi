@@ -55,9 +55,13 @@ class AppRouter extends _i6.RootStackRouter {
       );
     },
     RestaurantSearchByItemRoute.name: (routeData) {
+      final args = routeData.argsAs<RestaurantSearchByItemRouteArgs>();
       return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.RestaurantSearchByItemPage(),
+        child: _i4.RestaurantSearchByItemPage(
+          key: args.key,
+          itemname: args.itemname,
+        ),
       );
     },
     ProductDetailRoute.name: (routeData) {
@@ -184,14 +188,37 @@ class AllReviewsRouteArgs {
 
 /// generated route for
 /// [_i4.RestaurantSearchByItemPage]
-class RestaurantSearchByItemRoute extends _i6.PageRouteInfo<void> {
-  const RestaurantSearchByItemRoute()
-      : super(
+class RestaurantSearchByItemRoute
+    extends _i6.PageRouteInfo<RestaurantSearchByItemRouteArgs> {
+  RestaurantSearchByItemRoute({
+    _i7.Key? key,
+    required String itemname,
+  }) : super(
           RestaurantSearchByItemRoute.name,
           path: '/restaurant-search-by-item-page',
+          args: RestaurantSearchByItemRouteArgs(
+            key: key,
+            itemname: itemname,
+          ),
         );
 
   static const String name = 'RestaurantSearchByItemRoute';
+}
+
+class RestaurantSearchByItemRouteArgs {
+  const RestaurantSearchByItemRouteArgs({
+    this.key,
+    required this.itemname,
+  });
+
+  final _i7.Key? key;
+
+  final String itemname;
+
+  @override
+  String toString() {
+    return 'RestaurantSearchByItemRouteArgs{key: $key, itemname: $itemname}';
+  }
 }
 
 /// generated route for
