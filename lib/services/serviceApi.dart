@@ -1,5 +1,4 @@
 import 'package:foodwifi/model/allreviews.model.dart';
-import 'package:foodwifi/model/restaurantsdetails.model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:developer';
@@ -45,29 +44,29 @@ class ServiceApi {
 
 //!Restaurants_Menu_Model
 //?  changed to cubit
-  Future<List<RestaurantsDetailsModel?>?> getrestaurantsdetaildata(
-      {String? id}) async {
-    try {
-      final queryParameters = {
-        'id': id,
-      };
-      final baseHeader = {'Branchid': "1"};
-      final response = await http.get(
-          Uri.http('app.myfoodwifi.com', '/api/restaurants/categoryproduct',
-              queryParameters),
-          headers: baseHeader);
-      if (response.statusCode == 200) {
-        var detaildata = restaurantsDetailsModelFromJson(response.body);
+  // Future<List<RestaurantsDetailsModel?>?> getrestaurantsdetaildata(
+  //     {String? id}) async {
+  //   try {
+  //     final queryParameters = {
+  //       'id': id,
+  //     };
+  //     final baseHeader = {'Branchid': "1"};
+  //     final response = await http.get(
+  //         Uri.http('app.myfoodwifi.com', '/api/restaurants/categoryproduct',
+  //             queryParameters),
+  //         headers: baseHeader);
+  //     if (response.statusCode == 200) {
+  //       var detaildata = restaurantsDetailsModelFromJson(response.body);
 
-        log('Successfully get ResturantDetailData');
-        return detaildata;
-      } else {
-        log('Failed to get ResturantDetailData.');
-      }
-      return null;
-    } catch (e) {}
-    return null;
-  }
+  //       log('Successfully get ResturantDetailData');
+  //       return detaildata;
+  //     } else {
+  //       log('Failed to get ResturantDetailData.');
+  //     }
+  //     return null;
+  //   } catch (e) {}
+  //   return null;
+  // }
 
 //!_Customer's reviews
   Future<ReviewModel?> getreviewdata({String? id}) async {
@@ -119,7 +118,7 @@ class ServiceApi {
         var reviewdata = allReviewsModelFromJson(response.body);
         var finaldata = reviewdata.toJson();
 
-        log('Successfully get re Data');
+        log('Successfully get reviw Data from service api');
         return finaldata;
       } else {
         log('Failed to Getdata.');

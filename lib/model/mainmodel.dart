@@ -1,3 +1,4 @@
+//!model for mainDashboard
 import 'dart:convert';
 
 List<Foodwifimodel?>? foodwifimodelFromJson(String str) =>

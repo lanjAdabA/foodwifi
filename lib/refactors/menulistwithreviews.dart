@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:foodwifi/model/allbelowmodel.dart';
-import 'package:foodwifi/model/restaurantsdetails.model.dart';
+import 'package:foodwifi/model/review_modal_modified.model.dart';
 import 'package:foodwifi/refactors/reviewBlock.dart';
 import 'package:foodwifi/router/router.gr.dart';
 
@@ -21,11 +20,15 @@ class MenuItemList extends StatefulWidget {
 }
 
 class _MenuItemListState extends State<MenuItemList> {
-  List<RestaurantsDetailsModel?>? restaurantdata;
+  List<ReviewModalModified?>? restaurantdata;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return
+        // widget.allbelowdata.isEmpty
+        //     ? MenuItemListSkeleton()
+        //     :
+        Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(bottom: 6),
@@ -40,7 +43,7 @@ class _MenuItemListState extends State<MenuItemList> {
                   ),
                   Text(
                     // 'try',
-                    widget.allbelowdata[widget.nameindex]!.categoryName,
+                    widget.allbelowdata[widget.nameindex]!.categoryName!,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
                   Padding(
@@ -183,10 +186,11 @@ class _MenuItemListState extends State<MenuItemList> {
                                                     width: 10,
                                                   ),
                                                   Text(
-                                                    '₹${widget.allbelowdata[widget.nameindex]!.products[itemindex].offer!.offerPrice.toString()}',
+                                                    '₹${widget.allbelowdata[widget.nameindex]!.products[itemindex].offer.offerPrice.toStringAsFixed(2)}',
                                                     style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
@@ -233,7 +237,7 @@ class _MenuItemListState extends State<MenuItemList> {
                                                                           .nameindex]!
                                                                   .products[
                                                                       itemindex]
-                                                                  .offer!
+                                                                  .offer
                                                                   .description
                                                                   .toString(),
                                                               style: TextStyle(

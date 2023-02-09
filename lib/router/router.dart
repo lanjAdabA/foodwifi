@@ -2,7 +2,7 @@
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
 import 'package:auto_route/annotations.dart';
-import 'package:foodwifi/pages/all_reviews.page.dart';
+import 'package:foodwifi/pages/allreviews.page.dart';
 import 'package:foodwifi/pages/itemDetail.page.dart';
 import 'package:foodwifi/pages/maindashboard.page.dart';
 import 'package:foodwifi/pages/restaurantSearchByItem.page.dart';

@@ -2,6 +2,7 @@
 //
 //     final productdetail = productdetailFromJson(jsonString);
 
+//! model for item/productDetail Page
 import 'dart:convert';
 
 ProductDetailModel productdetailFromJson(String str) =>

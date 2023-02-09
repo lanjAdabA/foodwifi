@@ -3,6 +3,8 @@
 //     final reviewModel = reviewModelFromJson(jsonString);
 
 // import 'package:meta/meta.dart';
+//! reviews model (restaurant page review section)
+
 import 'dart:convert';
 
 ReviewModel reviewModelFromJson(String str) =>
@@ -43,8 +45,8 @@ class Review {
     required this.createdDate,
   });
 
-  final String name;
-  final String rating;
+  final String? name;
+  final String? rating;
   final String? description;
   final DateTime createdDate;
 

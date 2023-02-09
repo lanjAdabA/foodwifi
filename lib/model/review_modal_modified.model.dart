@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final reviewModalModified = reviewModalModifiedFromJson(jsonString);
+//! modifiedmodelwith review (restaurant details)
 
 import 'dart:convert';
 
@@ -22,7 +23,7 @@ class ReviewModalModified {
 
   final int categoryId;
   final bool stock;
-  final String categoryName;
+  final String? categoryName;
   final Reviewdata? reviewdata;
   final List<Product> products;
 
@@ -63,18 +64,18 @@ class Product {
     required this.customizable,
   });
 
-  final int? id;
+  final int id;
   final String? name;
-  final bool? stock;
-  final bool? isOffer;
+  final bool stock;
+  final bool isOffer;
   final String? offerType;
-  final Offer? offer;
-  final int? price;
+  final Offer offer;
+  final int price;
   final String? img;
   final String? type;
   final String? description;
   final List<dynamic>? tags;
-  final bool? customizable;
+  final bool customizable;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
         id: json["id"],
@@ -97,7 +98,7 @@ class Product {
         "stock": stock,
         "is_offer": isOffer,
         "offer_type": offerType,
-        "offer": offer!.toJson(),
+        "offer": offer.toJson(),
         "price": price,
         "img": img,
         "type": type,
@@ -118,7 +119,7 @@ class Offer {
   final dynamic offerPc;
   final String? description;
   final String? offerUpto;
-  final double? offerPrice;
+  final double offerPrice;
 
   factory Offer.fromJson(Map<String, dynamic> json) => Offer(
         offerPc: json["offerPc"],
@@ -143,7 +144,7 @@ class Reviewdata {
   });
 
   final double rating;
-  final String ratingCount;
+  final String? ratingCount;
   final List<Review> review;
 
   factory Reviewdata.fromJson(Map<String, dynamic> json) => Reviewdata(
@@ -168,8 +169,8 @@ class Review {
     required this.createdDate,
   });
 
-  final String name;
-  final String rating;
+  final String? name;
+  final String? rating;
   final String? description;
   final DateTime createdDate;
 

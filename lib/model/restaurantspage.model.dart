@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final restaurantsPageModel = restaurantsPageModelFromJson(jsonString);
+//!model for RestaurantPage ((Upper Portion))
 
 import 'dart:convert';
 

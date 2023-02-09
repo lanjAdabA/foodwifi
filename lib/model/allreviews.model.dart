@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final allReviewsModel = allReviewsModelFromJson(jsonString);
+//! model for AllReviewPage
 
 import 'dart:convert';
 

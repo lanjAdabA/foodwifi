@@ -1,4 +1,4 @@
-import 'package:foodwifi/model/allbelowmodel.dart';
+import 'package:foodwifi/model/review_modal_modified.model.dart';
 import 'package:foodwifi/router/router.gr.dart';
 import 'package:intl/intl.dart';
 import 'package:auto_route/auto_route.dart';
@@ -84,7 +84,7 @@ class _reviewBlockState extends State<reviewBlock> {
                   width: 6,
                 ),
                 Text(
-                  widget.reviewdata!.ratingCount,
+                  widget.reviewdata!.ratingCount!,
                   style: TextStyle(color: Colors.grey[800], fontSize: 14),
                 ),
                 Text(
@@ -134,12 +134,15 @@ class _reviewBlockState extends State<reviewBlock> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   //*---name
-                                  Text(
-                                    widget.reviewdata!.review[index].name,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500),
-                                  ),
+                                  widget.reviewdata!.review[index].name == null
+                                      ? SizedBox()
+                                      : Text(
+                                          widget
+                                              .reviewdata!.review[index].name!,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500),
+                                        ),
                                   SizedBox(
                                     height: 10,
                                   ),
@@ -147,7 +150,8 @@ class _reviewBlockState extends State<reviewBlock> {
                                   Row(
                                     children: [
                                       Text(
-                                        widget.reviewdata!.review[index].rating,
+                                        widget
+                                            .reviewdata!.review[index].rating!,
                                         style: TextStyle(fontSize: 13),
                                       ),
                                       Icon(

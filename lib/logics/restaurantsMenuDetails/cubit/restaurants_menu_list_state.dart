@@ -10,10 +10,10 @@ class RestaurantsMenuListState extends Equatable {
       required this.oneitem,
       required this.status,
       required this.alldata});
-  final List<RestaurantsDetailsModel?> alldata;
-  final List<RestaurantsDetailsModel?> orialldata;
+  final List<ReviewModalModified?> alldata;
+  final List<ReviewModalModified?> orialldata;
   final List<ReviewModalModified> vegdata;
-  final List<RestaurantsDetailsModel> oneitem;
+  final List<ReviewModalModified> oneitem;
   final List<ReviewModalModified> allbelowitems;
   final Status2 status;
 

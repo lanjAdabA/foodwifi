@@ -1,3 +1,6 @@
+//! RestaurantsPage Search by menu item
+//! loc: dashboard>ChooseFromCuisines>restaurantsPageByMenuItem
+
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
@@ -6,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/searchResturantByItem/cubit/search_resturant_by_item_cubit.dart';
 import 'package:foodwifi/model/resturant_search_by_item.model.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
+import 'package:foodwifi/router/router.gr.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class RestaurantSearchByItemPage extends StatefulWidget {
@@ -78,28 +82,6 @@ class _RestaurantSearchByItemPageState
         ? Scaffold(
             body: Column(
               children: [
-                AppBar(
-                  backgroundColor: Colors.grey[50],
-                  leading: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.grey[800],
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        context.router.pop();
-                      },
-                    ),
-                  ),
-                  title: Text(
-                    "Pizza",
-                    style: TextStyle(color: Colors.grey[800]),
-                  ),
-                  centerTitle: true,
-                  elevation: 0,
-                ),
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: 6,
@@ -171,262 +153,7 @@ class _RestaurantSearchByItemPageState
                             height: 135,
                             color: Colors.grey[50],
                           ),
-                          ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.only(top: 7),
-                              shrinkWrap: true,
-                              itemCount: allsearchdata.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                    child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 15, right: 15, top: 10),
-                                      child: Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 120,
-                                            width: 120,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: allsearchdata[index].img ==
-                                                      null
-                                                  ? SizedBox(
-                                                      height: 120,
-                                                      width: 120,
-                                                      child: ClipOval(
-                                                        child: Image.asset(
-                                                            'assets/images/foodwifilogo.png',
-                                                            color: Colors.white
-                                                                .withOpacity(
-                                                                    0.2),
-                                                            colorBlendMode:
-                                                                BlendMode
-                                                                    .modulate),
-                                                      ),
-                                                    )
-                                                  : Image.network(
-                                                      'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${allsearchdata[index].img}'),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 15),
-                                            child: SizedBox(
-                                              height: 90,
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    allsearchdata[index].title,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 16),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(vertical: 2),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          allsearchdata[index]
-                                                              .time,
-                                                          style: TextStyle(
-                                                              fontSize: 10,
-                                                              color: const Color
-                                                                      .fromARGB(
-                                                                  221,
-                                                                  60,
-                                                                  60,
-                                                                  60)),
-                                                        ),
-                                                        const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      3),
-                                                          child: Icon(
-                                                            Icons.circle,
-                                                            size: 2,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          allsearchdata[index]
-                                                              .distance,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                      .fromARGB(
-                                                                  221,
-                                                                  60,
-                                                                  60,
-                                                                  60),
-                                                              fontSize: 10),
-                                                        ),
-                                                        const Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      3),
-                                                          child: Icon(
-                                                            Icons.circle,
-                                                            size: 2,
-                                                          ),
-                                                        ),
-                                                        const Icon(
-                                                          Icons.star,
-                                                          size: 11,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              220,
-                                                              204,
-                                                              52),
-                                                        ),
-                                                        Text(
-                                                          allsearchdata[index]
-                                                              .rating
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              fontSize: 10,
-                                                              color: const Color
-                                                                      .fromARGB(
-                                                                  221,
-                                                                  60,
-                                                                  60,
-                                                                  60)),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    allsearchdata[index]
-                                                        .description,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        color: const Color
-                                                                .fromARGB(
-                                                            221, 60, 60, 60)),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    const Divider(
-                                      thickness: 1,
-                                    ),
-                                    ListView.builder(
-                                        padding: EdgeInsets.only(bottom: 4),
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            allsearchdata[index].items.length,
-                                        itemBuilder: (context, itemindex) {
-                                          return Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 15,
-                                                right: 15,
-                                                top: 10,
-                                                bottom: 5),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 250,
-                                                      child: Text(
-                                                        // maxLines: 1,
-                                                        allsearchdata[index]
-                                                            .items[itemindex]
-                                                            .name,
-                                                        style: TextStyle(
-                                                          fontSize: 16,
-                                                          letterSpacing: 0.6,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          "₹",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                        ),
-                                                        Text(
-                                                          allsearchdata[index]
-                                                              .items[itemindex]
-                                                              .price
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    SizedBox(
-                                                      height: 14,
-                                                    )
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: 50,
-                                                  width: 50,
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    child: allsearchdata[index]
-                                                                .items[
-                                                                    itemindex]
-                                                                .image ==
-                                                            null
-                                                        ? SizedBox(
-                                                            height: 50,
-                                                            width: 50,
-                                                            child: ClipOval(
-                                                              child: Image.asset(
-                                                                  'assets/images/foodwifilogo.png',
-                                                                  color: Colors
-                                                                      .white
-                                                                      .withOpacity(
-                                                                          0.2),
-                                                                  colorBlendMode:
-                                                                      BlendMode
-                                                                          .modulate),
-                                                            ),
-                                                          )
-                                                        : Image.network(
-                                                            'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${allsearchdata[index].items[itemindex].image}'),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                    Divider(
-                                      color: Colors.grey[200],
-                                      thickness: 6,
-                                    ),
-                                  ],
-                                ));
-                              }),
+                          RestaurantBlockSection(allsearchdata: allsearchdata),
                           Center(
                             child: ismoreloading!
                                 ? Padding(
@@ -453,7 +180,10 @@ class _RestaurantSearchByItemPageState
                       ),
                     ),
                   ),
-                  FloatingAppbarPart(seachitems: seachitems),
+                  FloatingAppbarPart(
+                    seachitems: seachitems,
+                    itemname: widget.itemname,
+                  ),
                 ],
               ),
             ),
@@ -461,10 +191,241 @@ class _RestaurantSearchByItemPageState
   }
 }
 
+class RestaurantBlockSection extends StatelessWidget {
+  const RestaurantBlockSection({
+    Key? key,
+    required this.allsearchdata,
+  }) : super(key: key);
+
+  final List<ResturantSearchByItemModel> allsearchdata;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.only(top: 7),
+        shrinkWrap: true,
+        itemCount: allsearchdata.length,
+        itemBuilder: (context, index) {
+          return Container(
+              child: Column(
+            children: [
+              //todo : restaurant name section
+              InkWell(
+                onTap: () {
+                  context.router.push(RestaurantRoute(
+                      id: allsearchdata[index].id,
+                      itemname: allsearchdata[index].title));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 120,
+                        width: 120,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: allsearchdata[index].img == null
+                              ? SizedBox(
+                                  height: 120,
+                                  width: 120,
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                        'assets/images/foodwifilogo.png',
+                                        color: Colors.white.withOpacity(0.2),
+                                        colorBlendMode: BlendMode.modulate),
+                                  ),
+                                )
+                              : Image.network(
+                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${allsearchdata[index].img}'),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 15),
+                        child: SizedBox(
+                          height: 90,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                allsearchdata[index].title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 2),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      allsearchdata[index].time,
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: const Color.fromARGB(
+                                              221, 60, 60, 60)),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 3),
+                                      child: Icon(
+                                        Icons.circle,
+                                        size: 2,
+                                      ),
+                                    ),
+                                    Text(
+                                      allsearchdata[index].distance,
+                                      style: TextStyle(
+                                          color: const Color.fromARGB(
+                                              221, 60, 60, 60),
+                                          fontSize: 10),
+                                    ),
+                                    const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 3),
+                                      child: Icon(
+                                        Icons.circle,
+                                        size: 2,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.star,
+                                      size: 11,
+                                      color: Color.fromARGB(255, 220, 204, 52),
+                                    ),
+                                    Text(
+                                      allsearchdata[index].rating.toString(),
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: const Color.fromARGB(
+                                              221, 60, 60, 60)),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Text(
+                                allsearchdata[index].description,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color:
+                                        const Color.fromARGB(221, 60, 60, 60)),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+              ),
+              ListView.builder(
+                  padding: EdgeInsets.only(bottom: 4),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: allsearchdata[index].items.length,
+                  itemBuilder: (context, itemindex) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15, right: 15, top: 10, bottom: 5),
+                      child: InkWell(
+                        onTap: (() {
+                          context.router.push(RestaurantRoute(
+                              id: allsearchdata[index].id,
+                              itemname: allsearchdata[index].title));
+                          // .pop();
+                        }),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 250,
+                                  child: Text(
+                                    // maxLines: 1,
+                                    allsearchdata[index].items[itemindex].name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      letterSpacing: 0.6,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "₹",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      allsearchdata[index]
+                                          .items[itemindex]
+                                          .price
+                                          .toString(),
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 14,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: allsearchdata[index]
+                                            .items[itemindex]
+                                            .image ==
+                                        null
+                                    ? SizedBox(
+                                        height: 50,
+                                        width: 50,
+                                        child: ClipOval(
+                                          child: Image.asset(
+                                              'assets/images/foodwifilogo.png',
+                                              color:
+                                                  Colors.white.withOpacity(0.2),
+                                              colorBlendMode:
+                                                  BlendMode.modulate),
+                                        ),
+                                      )
+                                    : Image.network(
+                                        'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${allsearchdata[index].items[itemindex].image}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+              Divider(
+                color: Colors.grey[200],
+                thickness: 6,
+              ),
+            ],
+          ));
+        });
+  }
+}
+
 class FloatingAppbarPart extends StatelessWidget {
+  final String itemname;
+
   const FloatingAppbarPart({
     super.key,
     required this.seachitems,
+    required this.itemname,
   });
 
   final List seachitems;
@@ -495,7 +456,7 @@ class FloatingAppbarPart extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    "Pizza",
+                    itemname,
                     style: TextStyle(color: Colors.grey[800]),
                   ),
                   centerTitle: true,
@@ -520,24 +481,7 @@ class FloatingAppbarPart extends StatelessWidget {
                                   fontSize: 13, fontWeight: FontWeight.w500),
                             ),
                             backgroundColor: Colors.grey[300],
-                          )
-                          // Container(
-                          //   height: 10,
-                          //   decoration: BoxDecoration(
-                          //       borderRadius: BorderRadius.circular(12),
-                          //       color: Colors.grey[300]),
-                          //   child: Center(
-                          //     child: Padding(
-                          //       padding:
-                          //           const EdgeInsets.symmetric(horizontal: 12),
-                          //       child: Text(
-                          //         "Sample data",
-                          //         style: TextStyle(fontSize: 13),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          );
+                          ));
                     },
                   ),
                 ),

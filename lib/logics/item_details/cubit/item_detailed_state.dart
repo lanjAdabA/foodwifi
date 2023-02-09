@@ -1,11 +1,14 @@
 part of 'item_detailed_cubit.dart';
 
+enum Status { initial, loading, loaded, error }
+
 class ItemDetailedState extends Equatable {
-  const ItemDetailedState({this.productdetail});
+  const ItemDetailedState({required this.status, this.productdetail});
   final ProductDetailModel? productdetail;
+  final Status status;
 
   @override
-  List<Object?> get props => [productdetail];
+  List<Object?> get props => [status, productdetail];
 }
 
 

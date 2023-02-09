@@ -1,3 +1,6 @@
+//! MainPage/Dashboard
+//! loc: dashboard>OffersForYou>restaurantsPage>itemDetails
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';

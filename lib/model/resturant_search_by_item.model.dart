@@ -1,6 +1,7 @@
 // To parse this JSON data, do
 //
 //     final resturantSearchByItem = resturantSearchByItemFromJson(jsonString);
+//! model for restaurantPage ((lower Portion, menus & items))
 
 import 'dart:convert';
 
@@ -41,7 +42,7 @@ class ResturantSearchByItemModel {
   final String distance;
   final String time;
   final double rating;
-  final int offer;
+  final dynamic offer;
   final String offerUpto;
   final bool showOfferBadge;
   final String? topBadge;

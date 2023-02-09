@@ -1,8 +1,10 @@
+//! Item/Product details page
+//! dashboard>OffersForYou>restaurantsPage>item/ProductDetails
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/item_details/cubit/item_detailed_cubit.dart';
-import 'package:foodwifi/model/allbelowmodel.dart';
+import 'package:foodwifi/model/review_modal_modified.model.dart';
 
 import '../refactors/skeletonBlock.dart';
 
@@ -102,9 +104,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 width: 10,
                               ),
                               Text(
-                                '₹${widget.product.offer!.offerPrice.toString()}',
+                                //? to rounf up to 2 decimal place
+
+                                // '₹${num.parse(widget.product.offer.offerPrice.toStringAsFixed(2))}',
+                                '₹${widget.product.offer.offerPrice.toStringAsFixed(2)}', //!working for amarjit
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
                               ),
                             ],
                           ),
@@ -141,7 +148,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         left: 5,
                                       ),
                                       child: Text(
-                                        widget.product.offer!.description
+                                        widget.product.offer.description
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 11),

@@ -1,3 +1,5 @@
+//! product/item detail cubit
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -9,7 +11,9 @@ import 'package:http/http.dart' as http;
 part 'item_detailed_state.dart';
 
 class ItemDetailedCubit extends Cubit<ItemDetailedState> {
-  ItemDetailedCubit() : super(ItemDetailedState());
+  ItemDetailedCubit() : super(ItemDetailedState(status: Status.initial)) {
+    getproductdetail("");
+  }
   Future<void> getproductdetail(
     String id,
   ) async {
@@ -29,7 +33,8 @@ class ItemDetailedCubit extends Cubit<ItemDetailedState> {
 
         var itemdetails = ProductDetailModel.fromJson(data);
         log(itemdetails.toJson().toString());
-        emit(ItemDetailedState(productdetail: itemdetails));
+        emit(ItemDetailedState(
+            status: Status.loaded, productdetail: itemdetails));
 
         log('Successfully get Detail Data');
       } else {

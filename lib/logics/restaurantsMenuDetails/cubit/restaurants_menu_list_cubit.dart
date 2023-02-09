@@ -1,10 +1,11 @@
+// ! for Restaurantpage, uses restaurantDetailModel
+
 import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:foodwifi/model/allbelowmodel.dart';
-import 'package:foodwifi/model/restaurantsdetails.model.dart';
+import 'package:foodwifi/model/review_modal_modified.model.dart';
 import 'package:foodwifi/services/serviceApi.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,6 +25,7 @@ class RestaurantsMenuListCubit extends Cubit<RestaurantsMenuListState> {
   bool get isLoading => state.status == Status2.loading;
 
   Future<void> getrestaurantsdetaildata({String? id}) async {
+    log("from Resture=ant menu cubit : " + id.toString());
     if (isLoading) {
       return;
     }
@@ -45,17 +47,21 @@ class RestaurantsMenuListCubit extends Cubit<RestaurantsMenuListState> {
           headers: baseHeader);
       if (response.statusCode == 200) {
         List<ReviewModalModified> vegdata = [];
-        List<RestaurantsDetailsModel> oneitem = [];
-        var allbelowdata = jsonDecode(response.body) as List;
+        // List<RestaurantsDetailsModel> oneitem = [];
+        var allbelowdata = json.decode(response.body) as List;
 
         var re = await ServiceApi().getcustomerreview(id.toString());
 
         allbelowdata[0]['reviewdata'] = re;
 
-        var belowdata = restaurantsDetailsModelFromJson(response.body);
-        var originaldata = restaurantsDetailsModelFromJson(response.body);
+        // log("custome review added to restuarent :" + allbelowdata.toString());
+
+        //var belowdata = restaurantsDetailsModelFromJson(response.body);
+        // var originaldata = reviewModalModifiedFromJson(response.body);
         var finalbelow =
             allbelowdata.map((e) => ReviewModalModified.fromJson(e)).toList();
+
+        log("custome finalbelow added to restuarent :" + finalbelow.toString());
 
         log('Successfully get new Data');
         for (var element in finalbelow) {
@@ -74,15 +80,15 @@ class RestaurantsMenuListCubit extends Cubit<RestaurantsMenuListState> {
           }
         }
 
-        oneitem.add(belowdata[0]);
-        belowdata.removeAt(0);
+        // oneitem.add(belowdata[0]);
+        // belowdata.removeAt(0);
 
         emit(RestaurantsMenuListState(
-            alldata: belowdata,
+            alldata: [],
             status: Status2.loaded,
-            oneitem: oneitem,
+            oneitem: [],
             vegdata: vegdata,
-            orialldata: originaldata,
+            orialldata: [],
             allbelowitems: finalbelow));
       } else {
         emit(const RestaurantsMenuListState(
@@ -103,7 +109,7 @@ class RestaurantsMenuListCubit extends Cubit<RestaurantsMenuListState> {
           vegdata: [],
           orialldata: [],
           allbelowitems: []));
-      log('product error ${e.toString()}');
+      log('RestaurantsMenuListCubitERROR ${e.toString()}');
     }
     return;
   }

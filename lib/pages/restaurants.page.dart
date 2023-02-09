@@ -1,4 +1,6 @@
-//!_{resturant page }
+//! restaurantPage
+//! loc: dashboard>OffersForYou>restaurantsPage
+
 import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:bottom_sheet/bottom_sheet.dart';
@@ -6,11 +8,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/restaurantsMenuDetails/cubit/restaurants_menu_list_cubit.dart';
-import 'package:foodwifi/model/allbelowmodel.dart';
-import 'package:foodwifi/model/restaurantsdetails.model.dart';
+import 'package:foodwifi/model/review_modal_modified.model.dart';
 import 'package:foodwifi/model/restaurantspage.model.dart';
 import 'package:foodwifi/refactors/FloatingCard.dart';
-import 'package:foodwifi/refactors/menuItemlistblock.dart';
+import 'package:foodwifi/refactors/MenuItemListSkeleton.dart';
+import 'package:foodwifi/refactors/menulistwithreviews.dart';
 // import 'package:foodwifi/refactors/finalReturnListFiltered.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
 import 'package:foodwifi/refactors/vegonlylist.dart';
@@ -53,7 +55,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 
   RestaurantsPageModel? alldata;
-  List<RestaurantsDetailsModel?>? restaurantdata;
+  List<ReviewModalModified?>? restaurantdata;
   ScrollController controller = ScrollController();
   DraggableScrollableController dragController =
       DraggableScrollableController();
@@ -107,13 +109,13 @@ class _RestaurantPageState extends State<RestaurantPage> {
   Widget build(BuildContext context) {
     final allproductbelowdata = context.watch<RestaurantsMenuListCubit>().state;
 
-    List<RestaurantsDetailsModel?>? allbelowdata = allproductbelowdata.alldata;
+    // List<ReviewModalModified?>? allbelowdata = allproductbelowdata.alldata;
     List<ReviewModalModified?>? allvegdatalist = allproductbelowdata.vegdata;
     List<ReviewModalModified?>? allbelowitems =
         allproductbelowdata.allbelowitems;
 
-    List<RestaurantsDetailsModel?>? originalbelowdata =
-        allproductbelowdata.orialldata;
+    // List<ReviewModalModified?>? originalbelowdata =
+    //     allproductbelowdata.orialldata;
 
     return Scaffold(
       body: alldata == null
@@ -141,60 +143,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
           : Stack(
               children: [
                 //! {background/}
-                Stack(
-                  children: [
-                    //todo {backgroundimage}
-                    Column(
-                      children: [
-                        CachedNetworkImage(
-                          fadeInDuration: const Duration(seconds: 1),
-                          fit: BoxFit.fitWidth,
-                          imageUrl:
-                              'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${alldata!.img}',
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  const Skeleton(
-                            height: 185,
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
-                      ],
-                    ),
-                    //todo {back_icon and fav_icon}
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 42),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              context.router.pop();
-                              log("back");
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: Colors.black26,
-                              radius: 24,
-                              child: Icon(
-                                Icons.arrow_back_ios_new,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.black26,
-                            radius: 24,
-                            child: Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                BackgroundSection(alldata: alldata),
 
                 //! <_{front_Sreen-whole}
                 Positioned(
@@ -210,8 +159,14 @@ class _RestaurantPageState extends State<RestaurantPage> {
                       return true;
                     },
                     child: SingleChildScrollView(
+                      //!
+                      //!
+                      //!
                       //! scroll controller is disabled in debugging as its laggy in debug mode
-                      // controller: controller,
+                      //!
+                      //!
+                      //!
+                      // controller: controller, //todo: to be used for scrolling
                       clipBehavior: Clip.none,
                       // physics: const BouncingScrollPhysics(),
                       child: Column(
@@ -222,18 +177,21 @@ class _RestaurantPageState extends State<RestaurantPage> {
                           Container(
                             child: Column(
                               children: [
-                                //? padding btn card and list
+                                //? padding btn Floatingcard and list
                                 SizedBox(
                                   height: 14,
                                 ),
 
                                 Container(
+                                    // color: Colors.green,
                                     color: Colors.grey[200],
                                     child: Column(
                                       children: [
+                                        //! burger Ads
                                         Container(
                                           color: Colors.white,
                                           child: Padding(
+                                            //! burger Ads
                                             padding: const EdgeInsets.all(6.0),
                                             child: Image.asset(
                                               'assets/images/burgerAd.png',
@@ -243,7 +201,10 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                             ),
                                           ),
                                         ),
+                                        //! veg nonveg toggle button height
                                         Container(
+                                          height: 52,
+                                          color: Colors.white,
                                           child: Row(
                                             children: [
                                               Padding(
@@ -268,18 +229,15 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                               )
                                             ],
                                           ),
-                                          height: 52,
-                                          color: Colors.white,
                                         ),
+                                        //! toggle Button end postition
                                         isSwitched
                                             ? Column(
                                                 children: [
                                                   SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .height,
                                                     child: ListView.builder(
+                                                        padding:
+                                                            EdgeInsets.zero,
                                                         physics: showappbar
                                                             ? const BouncingScrollPhysics()
                                                             : const NeverScrollableScrollPhysics(),
@@ -294,114 +252,85 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                                   allvegdatalist,
                                                               ind: index,
                                                               id: widget.id);
-
-                                                          // return MenuItemsListFirst(
-                                                          //   id: widget.id,
-                                                          //   restaurantdata:
-                                                          //       allvegdatalist,
-                                                          //   ind: index,
-                                                          //   // allvegdatalist:
-                                                          //   //     allvegdatalist,
-                                                          //   // ind: index,
-                                                          //   // id: widget.id,
-                                                          // );
                                                         })),
                                                   )
                                                 ],
                                               )
                                             : Column(
                                                 children: [
-                                                  SizedBox(
-                                                    // height:
-                                                    //     MediaQuery.of(context)
-                                                    //         .size
-                                                    //         .height,
-                                                    //!
-                                                    // child: NotificationListener<
-                                                    //     UserScrollNotification>(
-                                                    //   onNotification: (notification) {
-                                                    //     direction =
-                                                    //         notification.direction;
-                                                    //     progress = notification
-                                                    //         .metrics.pixels;
-                                                    //     log('Pixels :${notification.metrics.pixels}');
-                                                    //     log('max scroll index :${notification.metrics.maxScrollExtent}');
-
-                                                    //     if (direction ==
-                                                    //         ScrollDirection.reverse) {
-                                                    //       log('down');
-
-                                                    //       setState(() {
-                                                    //         showappbar = true;
-                                                    //       });
-                                                    //     } else if (direction ==
-                                                    //         ScrollDirection.forward) {
-                                                    //       if (progress == 0) {
-                                                    //         setState(() {
-                                                    //           showappbar = false;
-                                                    //         });
-                                                    //       }
-                                                    //     }
-
-                                                    //     log('Progress :$progress');
-
-                                                    //     return true;
-                                                    //   },
-                                                    child:
-                                                        ScrollablePositionedList
-                                                            .builder(
-                                                      itemPositionsListener:
-                                                          itemPositionsListener,
-                                                      itemScrollController:
-                                                          itemScrollController,
-                                                      physics: showappbar
-                                                          ? const AlwaysScrollableScrollPhysics()
-                                                          : const NeverScrollableScrollPhysics(),
-                                                      padding: EdgeInsets.zero,
-                                                      shrinkWrap: true,
-                                                      itemCount:
-                                                          allbelowitems.length,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        return MenuItemList(
-                                                          allbelowdata:
-                                                              allbelowitems,
-                                                          nameindex: index,
-                                                          id: widget.id,
-                                                        );
-                                                      },
-                                                    ),
-                                                  ),
+                                                  allbelowitems.isEmpty
+                                                      ? MenuItemListSkeleton()
+                                                      : SizedBox(
+                                                          child:
+                                                              ScrollablePositionedList
+                                                                  .builder(
+                                                            itemPositionsListener:
+                                                                itemPositionsListener,
+                                                            itemScrollController:
+                                                                itemScrollController,
+                                                            physics: showappbar
+                                                                ? const AlwaysScrollableScrollPhysics()
+                                                                : const NeverScrollableScrollPhysics(),
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            shrinkWrap: true,
+                                                            itemCount:
+                                                                allbelowitems
+                                                                    .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              //! restaurent menu details list
+                                                              return MenuItemList(
+                                                                allbelowdata:
+                                                                    allbelowitems,
+                                                                nameindex:
+                                                                    index,
+                                                                id: widget.id,
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
                                                   // ),
                                                 ],
                                               )
-
-                                        //todo {non_veg item filtered}
-                                        // MenuItemsListFirst(
-                                        //   id: widget.id,
-
-                                        , // ),
-
-                                        // //Todo {What people say}
-
-                                        // reviewBlock(
-                                        //   id: widget.id,
-                                        // ),
-
-                                        // //!{_restaurant menu item part}
-
-                                        // MenuItemsList(
-                                        //   id: widget.id,
-                                        //   itemPositionsListener:
-                                        //       itemPositionsListener,
-                                        //   itemScrollController:
-                                        //       itemScrollController,
-                                        // ),
                                       ],
                                     )),
                               ],
                             ),
                           ),
+
+                          alldata == null
+                              ? SizedBox()
+                              : Container(
+                                  color: Colors.grey[50],
+                                  height: 80,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Text(
+                                            "Prices on this menu are set directly by the Merchant.",
+                                            style: TextStyle(
+                                                color: Colors.grey[700],
+                                                fontSize: 13),
+                                          ),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                            "Prices may differ between Delivery and Dine_in. ",
+                                            style: TextStyle(
+                                                color: Colors.grey[700],
+                                                fontSize: 13),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
                         ],
                       ),
                     ),
@@ -541,7 +470,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                                 setState(() {
                                                                   itemname = restaurantdata![
                                                                           index]!
-                                                                      .categoryName;
+                                                                      .categoryName!;
                                                                 });
                                                                 scrollTo(index);
                                                                 Navigator.pop(
@@ -557,7 +486,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                                 child: Text(
                                                                   restaurantdata![
                                                                           index]!
-                                                                      .categoryName,
+                                                                      .categoryName!,
                                                                 ),
                                                               ),
                                                             );
@@ -697,6 +626,70 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 //!_>{pop up appbar}
               ],
             ),
+    );
+  }
+}
+
+class BackgroundSection extends StatelessWidget {
+  const BackgroundSection({
+    Key? key,
+    required this.alldata,
+  }) : super(key: key);
+
+  final RestaurantsPageModel? alldata;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        //todo {backgroundimage}
+        Column(
+          children: [
+            CachedNetworkImage(
+              fadeInDuration: const Duration(seconds: 1),
+              fit: BoxFit.fitWidth,
+              imageUrl:
+                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${alldata!.img}',
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  const Skeleton(
+                height: 185,
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
+          ],
+        ),
+        //todo {back_icon and fav_icon}
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 42),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  context.router.pop();
+                  log("back");
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.black26,
+                  radius: 24,
+                  child: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              CircleAvatar(
+                backgroundColor: Colors.black26,
+                radius: 24,
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

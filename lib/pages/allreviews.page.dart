@@ -1,3 +1,6 @@
+//!All reviews page,
+//! loc: dashboard>offerForYou>resturantPage>reviewBlock>allReviewsPage
+
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
@@ -155,12 +158,17 @@ class _AllReviewsPageState extends State<AllReviewsPage> {
                                           SizedBox(
                                             height: 4,
                                           ),
-                                          Text(
-                                            allreviewdata!.review[index2].name!,
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
+                                          allreviewdata!.review[index2].name ==
+                                                  null
+                                              ? SizedBox()
+                                              : Text(
+                                                  allreviewdata!
+                                                      .review[index2].name!,
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
                                           SizedBox(height: 8),
                                           Row(
                                             children: [
