@@ -87,7 +87,9 @@ class ThirdBlock extends StatelessWidget {
                                             .id
                                             .toString(),
                                         itemname:
-                                            firstlistitem[2][index]!.title!));
+                                            firstlistitem[2][index]!.title!,
+                                        index: index,
+                                        iscomingfromsearch: false));
                                   },
                                   child: Padding(
                                     padding:

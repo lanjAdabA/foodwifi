@@ -41,6 +41,9 @@ class AppRouter extends _i6.RootStackRouter {
           key: args.key,
           id: args.id,
           itemname: args.itemname,
+          product: args.product,
+          index: args.index,
+          iscomingfromsearch: args.iscomingfromsearch,
         ),
       );
     },
@@ -65,7 +68,8 @@ class AppRouter extends _i6.RootStackRouter {
       );
     },
     ProductDetailRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductDetailRouteArgs>();
+      final args = routeData.argsAs<ProductDetailRouteArgs>(
+          orElse: () => const ProductDetailRouteArgs());
       return _i6.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.ProductDetailPage(
@@ -120,6 +124,9 @@ class RestaurantRoute extends _i6.PageRouteInfo<RestaurantRouteArgs> {
     _i7.Key? key,
     required String id,
     required String itemname,
+    _i8.Product? product,
+    required int index,
+    required bool iscomingfromsearch,
   }) : super(
           RestaurantRoute.name,
           path: '/restaurant-page',
@@ -127,6 +134,9 @@ class RestaurantRoute extends _i6.PageRouteInfo<RestaurantRouteArgs> {
             key: key,
             id: id,
             itemname: itemname,
+            product: product,
+            index: index,
+            iscomingfromsearch: iscomingfromsearch,
           ),
         );
 
@@ -138,6 +148,9 @@ class RestaurantRouteArgs {
     this.key,
     required this.id,
     required this.itemname,
+    this.product,
+    required this.index,
+    required this.iscomingfromsearch,
   });
 
   final _i7.Key? key;
@@ -146,9 +159,15 @@ class RestaurantRouteArgs {
 
   final String itemname;
 
+  final _i8.Product? product;
+
+  final int index;
+
+  final bool iscomingfromsearch;
+
   @override
   String toString() {
-    return 'RestaurantRouteArgs{key: $key, id: $id, itemname: $itemname}';
+    return 'RestaurantRouteArgs{key: $key, id: $id, itemname: $itemname, product: $product, index: $index, iscomingfromsearch: $iscomingfromsearch}';
   }
 }
 
@@ -226,7 +245,7 @@ class RestaurantSearchByItemRouteArgs {
 class ProductDetailRoute extends _i6.PageRouteInfo<ProductDetailRouteArgs> {
   ProductDetailRoute({
     _i7.Key? key,
-    required _i8.Product product,
+    _i8.Product? product,
   }) : super(
           ProductDetailRoute.name,
           path: '/product-detail-page',
@@ -242,12 +261,12 @@ class ProductDetailRoute extends _i6.PageRouteInfo<ProductDetailRouteArgs> {
 class ProductDetailRouteArgs {
   const ProductDetailRouteArgs({
     this.key,
-    required this.product,
+    this.product,
   });
 
   final _i7.Key? key;
 
-  final _i8.Product product;
+  final _i8.Product? product;
 
   @override
   String toString() {

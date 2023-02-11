@@ -9,8 +9,8 @@ import 'package:foodwifi/model/review_modal_modified.model.dart';
 import '../refactors/skeletonBlock.dart';
 
 class ProductDetailPage extends StatefulWidget {
-  final Product product;
-  const ProductDetailPage({super.key, required this.product});
+  final Product? product;
+  const ProductDetailPage({super.key, this.product});
 
   @override
   State<ProductDetailPage> createState() => _ProductDetailPageState();
@@ -23,7 +23,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     super.initState();
     context
         .read<ItemDetailedCubit>()
-        .getproductdetail(widget.product.id.toString());
+        .getproductdetail(widget.product!.id.toString());
   }
 
   int? _selectedIndex;
@@ -66,14 +66,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                       child: SizedBox(
                         height: 250,
                         width: MediaQuery.of(context).size.width,
-                        child: widget.product.img.toString().isEmpty
-                            ? Image.asset('assets/images/fo3.jpg',
+                        child: widget.product!.img.toString().isEmpty
+                            ? Image.asset('assets/images/foodwifilogo.png',
                                 fit: BoxFit.cover,
                                 alignment: const Alignment(0, -1),
                                 color: Colors.white.withOpacity(0.2),
                                 colorBlendMode: BlendMode.modulate)
                             : Image.network(
-                                'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${widget.product.img}',
+                                'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${widget.product!.img}',
                                 alignment: const Alignment(0, -0.8),
                                 fit: BoxFit.cover,
                               ),
@@ -86,7 +86,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.product.name!,
+                            widget.product!.name!,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           Row(
                             children: [
                               Text(
-                                '₹${widget.product.price}',
+                                '₹${widget.product!.price}',
                                 style: const TextStyle(
                                     decoration: TextDecoration.lineThrough,
                                     fontSize: 18),
@@ -107,7 +107,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 //? to rounf up to 2 decimal place
 
                                 // '₹${num.parse(widget.product.offer.offerPrice.toStringAsFixed(2))}',
-                                '₹${widget.product.offer.offerPrice.toStringAsFixed(2)}', //!working for amarjit
+                                '₹${widget.product!.offer.offerPrice.toStringAsFixed(2)}', //!working for amarjit
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -148,7 +148,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         left: 5,
                                       ),
                                       child: Text(
-                                        widget.product.offer.description
+                                        widget.product!.offer.description
                                             .toString(),
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 11),
@@ -165,7 +165,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15, top: 7),
-                      child: Text(widget.product.description!),
+                      child: Text(widget.product!.description!),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),

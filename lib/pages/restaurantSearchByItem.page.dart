@@ -215,7 +215,9 @@ class RestaurantBlockSection extends StatelessWidget {
                 onTap: () {
                   context.router.push(RestaurantRoute(
                       id: allsearchdata[index].id,
-                      itemname: allsearchdata[index].title));
+                      itemname: allsearchdata[index].title,
+                      iscomingfromsearch: false,
+                      index: index));
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -335,7 +337,9 @@ class RestaurantBlockSection extends StatelessWidget {
                         onTap: (() {
                           context.router.push(RestaurantRoute(
                               id: allsearchdata[index].id,
-                              itemname: allsearchdata[index].title));
+                              itemname: allsearchdata[index].title,
+                              iscomingfromsearch: true,
+                              index: index));
                           // .pop();
                         }),
                         child: Row(

@@ -23,10 +23,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        theme: ThemeData(
-          primaryColor: Colors.grey,
-          //  useMaterial3: true
-        ),
+        theme: ThemeData(primaryColor: Colors.grey, useMaterial3: true),
         builder: EasyLoading.init(),
       ),
     );

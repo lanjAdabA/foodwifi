@@ -56,13 +56,13 @@ class Details {
     required this.foodTagImage,
   });
 
-  final String id;
-  final String name;
-  final String type;
-  final String description;
+  final String? id;
+  final String? name;
+  final String? type;
+  final String? description;
   final String? image;
-  final String mobileImage;
-  final String markup;
+  final String? mobileImage;
+  final String? markup;
   final bool stock;
   final String? foodtagName;
   final String? foodTagImage;

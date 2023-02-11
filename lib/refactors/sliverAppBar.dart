@@ -8,10 +8,13 @@ class SLiverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double appbarheight = MediaQuery.of(context).size.height;
+    double appbarweight = MediaQuery.of(context).size.width;
+
     return SliverLayoutBuilder(builder: (context, constraints) {
       var scrollvalue = constraints.scrollOffset;
       return SliverAppBar(
-        toolbarHeight: 110,
+        toolbarHeight: appbarheight / 9.1,
         floating: true, pinned: true,
         backgroundColor: Colors.blueGrey[100],
 
@@ -78,7 +81,7 @@ class SLiverAppBar extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(10)),
-                    height: 46,
+                    height: appbarheight / 25,
                     child: Center(
                       child:
                           //!_searchbar_using_textField
@@ -159,8 +162,8 @@ class SLiverAppBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: appbarheight * 0.01,
                 ),
               ],
             ),

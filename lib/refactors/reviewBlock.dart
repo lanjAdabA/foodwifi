@@ -19,12 +19,13 @@ class reviewBlock extends StatefulWidget {
 
 class _reviewBlockState extends State<reviewBlock> {
   @override
-  @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Container(
-        height: 210,
+        height: height * 0.205,
         color: Colors.transparent,
         child: Column(
           children: [
@@ -99,7 +100,7 @@ class _reviewBlockState extends State<reviewBlock> {
             //todo {horizontal_scroll-@review}
             Container(
               //!
-              height: 140,
+              height: height * 0.134,
               // width: double.maxFinite,
               color: Colors.transparent,
               child: ListView.builder(
@@ -211,7 +212,7 @@ class _reviewBlockState extends State<reviewBlock> {
                                               .toString(),
                                           maxLines: 2,
                                           style: TextStyle(
-                                              height: 1.5,
+                                              height: 1.35,
                                               overflow: TextOverflow.ellipsis,
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500),
