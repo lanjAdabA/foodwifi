@@ -209,7 +209,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
                             ? const AlwaysScrollableScrollPhysics()
                             : progress == 0.0
                                 ? const AlwaysScrollableScrollPhysics()
-                                : const NeverScrollableScrollPhysics(), //!
+                                : const NeverScrollableScrollPhysics(),
+                        //!
                         //!
                         //!
                         //! scroll controller is disabled in debugging as its laggy in debug mode
@@ -799,3 +800,4 @@ class BackgroundSection extends StatelessWidget {
     );
   }
 }
+// latest
