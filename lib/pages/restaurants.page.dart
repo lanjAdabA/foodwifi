@@ -313,6 +313,11 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                     allbelowitems.isEmpty
                                                         ? MenuItemListSkeleton()
                                                         : SizedBox(
+                                                            height:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height,
                                                             child: NotificationListener<
                                                                 UserScrollNotification>(
                                                               onNotification:
