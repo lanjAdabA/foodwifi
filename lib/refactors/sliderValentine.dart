@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:foodwifi/model/mainmodel.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
 
-class FirstBlock extends StatelessWidget {
-  const FirstBlock({
+class SliderValentine extends StatelessWidget {
+  const SliderValentine({
     Key? key,
     required this.firstlistitem,
   }) : super(key: key);
@@ -35,29 +35,23 @@ class FirstBlock extends StatelessWidget {
                               height: 237,
                             )
                           : ListView.builder(
-                              padding: EdgeInsets.zero,
                               controller:
                                   PageController(viewportFraction: 0.73),
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              //! previous version first index itemcount
-
-                              // itemCount: firstlistitem[1].length,
-                              itemCount: 1,
-
+                              itemCount: firstlistitem[0].length,
                               itemBuilder: ((
                                 context,
                                 index,
                               ) {
                                 return Padding(
-                                  padding: EdgeInsets.all(8),
+                                  padding: EdgeInsets.only(top: 28, left: 16),
                                   child: Image.asset(
-                                      "assets/images/valentine.png"),
+                                      "assets/images/valentineCard.JPG"),
                                 );
 
-                                //! previous version first index components
-                                // return Padding(
+                                //  Padding(
                                 //   padding: const EdgeInsets.only(
                                 //     top: 28,
                                 //     left: 16,
@@ -103,7 +97,6 @@ class FirstBlock extends StatelessWidget {
                                 //         ],
                                 //       )),
                                 // );
-                                // return null;
                               }),
                             ),
                     ),

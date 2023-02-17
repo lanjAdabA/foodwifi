@@ -42,7 +42,7 @@ class SecondBlock extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              itemCount: firstlistitem[1].length,
+                              itemCount: firstlistitem[0].length,
                               itemBuilder: ((
                                 context,
                                 index,
@@ -61,7 +61,7 @@ class SecondBlock extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[1][index]!.img}',
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[0][index]!.img}',
                                               height: 100,
                                               width: 100,
                                               fit: BoxFit.cover,
@@ -80,7 +80,7 @@ class SecondBlock extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 bottom: 8, top: 12.0),
                                             child: Text(
-                                              firstlistitem[1][index]!.title!,
+                                              firstlistitem[0][index]!.title!,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 11),

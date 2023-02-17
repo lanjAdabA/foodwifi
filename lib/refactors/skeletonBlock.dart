@@ -16,7 +16,7 @@ class Skeleton extends StatelessWidget {
       // This is the default value
       direction: ShimmerDirection.ltr,
 
-      baseColor: Colors.grey,
+      baseColor: Colors.grey[400]!,
       highlightColor: Color.fromARGB(255, 225, 219, 219),
       child: Container(
         height: height,

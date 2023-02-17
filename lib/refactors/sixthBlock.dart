@@ -40,7 +40,7 @@ class SixthBlock extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              alldata[5].title!,
+                              alldata[4].title!,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
@@ -62,7 +62,7 @@ class SixthBlock extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          alldata[5].description!,
+                          alldata[4].description!,
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 12,
@@ -82,7 +82,7 @@ class SixthBlock extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              itemCount: firstlistitem[5].length,
+                              itemCount: firstlistitem[4].length,
                               itemBuilder: ((
                                 context,
                                 index,
@@ -103,7 +103,7 @@ class SixthBlock extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[5][index]!.img}',
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[4][index]!.img}',
                                               height: 182,
                                               width: 333,
                                               fit: BoxFit.cover,
@@ -134,7 +134,7 @@ class SixthBlock extends StatelessWidget {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        firstlistitem[5][index]!
+                                                        firstlistitem[4][index]!
                                                             .title!,
                                                         style: TextStyle(
                                                             fontWeight:
@@ -152,12 +152,12 @@ class SixthBlock extends StatelessWidget {
                                                   height: 6,
                                                 ),
 
-                                                firstlistitem[5][index]!
+                                                firstlistitem[4][index]!
                                                             .description ==
                                                         null
                                                     ? SizedBox()
                                                     : Text(
-                                                        firstlistitem[5][index]!
+                                                        firstlistitem[4][index]!
                                                             .description!,
                                                         style: TextStyle(
                                                             fontWeight:
@@ -189,7 +189,7 @@ class SixthBlock extends StatelessWidget {
                                                       width: 2,
                                                     ),
                                                     Text(
-                                                      firstlistitem[5][index]!
+                                                      firstlistitem[4][index]!
                                                           .rating
                                                           .toString(),
                                                       style: TextStyle(
@@ -209,7 +209,7 @@ class SixthBlock extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Text(
-                                                      firstlistitem[5][index]!
+                                                      firstlistitem[4][index]!
                                                           .time
                                                           .toString(),
                                                       style: TextStyle(
@@ -229,7 +229,7 @@ class SixthBlock extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Text(
-                                                      firstlistitem[5][index]!
+                                                      firstlistitem[4][index]!
                                                           .distance
                                                           .toString(),
                                                       style: TextStyle(

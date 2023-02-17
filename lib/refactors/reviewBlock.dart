@@ -100,7 +100,7 @@ class _reviewBlockState extends State<reviewBlock> {
             //todo {horizontal_scroll-@review}
             Container(
               //!
-              height: height * 0.134,
+              height: height * .11,
               // width: double.maxFinite,
               color: Colors.transparent,
               child: ListView.builder(
@@ -170,7 +170,6 @@ class _reviewBlockState extends State<reviewBlock> {
                                       ),
                                       Text(
                                         formateddate,
-                                        // "${ reviewdata!.review[index].createdDate.year}/${ reviewdata!.review[index].createdDate.month}/${ reviewdata!.review[index].createdDate.day}",
                                         style: TextStyle(
                                             color: Colors.grey[700],
                                             fontSize: 12),
@@ -199,7 +198,7 @@ class _reviewBlockState extends State<reviewBlock> {
                                     ],
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 8,
                                   ),
                                   //*--- review
                                   widget.reviewdata!.review[index]

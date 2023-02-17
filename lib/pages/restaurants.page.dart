@@ -513,6 +513,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                             log('pressed');
                                             showFlexibleBottomSheet<void>(
                                               useRootNavigator: true,
+                                              //! background Trenslucent
                                               barrierColor: Colors.black38,
                                               draggableScrollableController:
                                                   dragController,
@@ -534,7 +535,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                               initHeight: 0.5,
                                               maxHeight: 0.85,
                                               context: context,
-                                              bottomSheetColor: Colors.white,
+                                              bottomSheetColor:
+                                                  Colors.transparent,
                                               builder: (context, controller,
                                                   offset) {
                                                 log('Scrollcntroller :$offset');
@@ -547,12 +549,17 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                       Container(
                                                         height: 5,
                                                         decoration: BoxDecoration(
-                                                            color: Colors.grey,
+                                                            color: Colors
+                                                                .grey[400],
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
                                                                         10)),
-                                                        width: 40,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width /
+                                                            13,
                                                       ),
                                                       Flexible(
                                                         child: Container(
@@ -607,7 +614,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                                                               return const Divider(
                                                                 color:
                                                                     Colors.grey,
-                                                                thickness: 1,
+                                                                thickness: .5,
                                                               );
                                                             },
                                                           ),
@@ -805,4 +812,3 @@ class BackgroundSection extends StatelessWidget {
     );
   }
 }
-// latest

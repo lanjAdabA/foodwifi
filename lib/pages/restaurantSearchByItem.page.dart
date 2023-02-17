@@ -14,8 +14,18 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class RestaurantSearchByItemPage extends StatefulWidget {
   final String itemname;
+  final bool issearchfound;
+  final String cuisinesId;
+  final String storetypeid;
+  final String checkname;
 
-  const RestaurantSearchByItemPage({super.key, required this.itemname});
+  const RestaurantSearchByItemPage(
+      {super.key,
+      required this.itemname,
+      required this.issearchfound,
+      required this.cuisinesId,
+      required this.storetypeid,
+      required this.checkname});
 
   @override
   State<RestaurantSearchByItemPage> createState() =>

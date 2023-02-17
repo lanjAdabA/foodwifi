@@ -41,7 +41,7 @@ class ThirdBlock extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          alldata[2].title!,
+                          alldata[1].title!,
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -74,7 +74,7 @@ class ThirdBlock extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              itemCount: firstlistitem[2].length,
+                              itemCount: firstlistitem[1].length,
                               itemBuilder: ((
                                 context,
                                 index,
@@ -83,11 +83,11 @@ class ThirdBlock extends StatelessWidget {
                                   onTap: () {
                                     log("clicked on restaurants block");
                                     context.router.push(RestaurantRoute(
-                                        id: firstlistitem[2][index]!
+                                        id: firstlistitem[1][index]!
                                             .id
                                             .toString(),
                                         itemname:
-                                            firstlistitem[2][index]!.title!,
+                                            firstlistitem[1][index]!.title!,
                                         index: index,
                                         iscomingfromsearch: false));
                                   },
@@ -110,7 +110,7 @@ class ThirdBlock extends StatelessWidget {
                                                       BorderRadius.circular(10),
                                                   child: CachedNetworkImage(
                                                     imageUrl:
-                                                        'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[2][index]!.img}',
+                                                        'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[1][index]!.img}',
                                                     height: 172,
                                                     width: 310,
                                                     fit: BoxFit.cover,
@@ -167,7 +167,7 @@ class ThirdBlock extends StatelessWidget {
                                                                           .only(
                                                                       left: 5),
                                                               child: Text(
-                                                                firstlistitem[2]
+                                                                firstlistitem[1]
                                                                         [index]!
                                                                     .offerDescription!,
                                                                 style: TextStyle(
@@ -196,7 +196,7 @@ class ThirdBlock extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    firstlistitem[2][index]!
+                                                    firstlistitem[1][index]!
                                                         .title!,
                                                     style: TextStyle(
                                                         fontWeight:
@@ -207,7 +207,7 @@ class ThirdBlock extends StatelessWidget {
                                                     height: 6,
                                                   ),
                                                   Text(
-                                                    firstlistitem[2][index]!
+                                                    firstlistitem[1][index]!
                                                         .description!,
                                                     style: TextStyle(
                                                         fontWeight:
@@ -239,7 +239,7 @@ class ThirdBlock extends StatelessWidget {
                                                         width: 2,
                                                       ),
                                                       Text(
-                                                        firstlistitem[2][index]!
+                                                        firstlistitem[1][index]!
                                                             .rating
                                                             .toString(),
                                                         style: TextStyle(
@@ -259,7 +259,7 @@ class ThirdBlock extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        firstlistitem[2][index]!
+                                                        firstlistitem[1][index]!
                                                             .time
                                                             .toString(),
                                                         style: TextStyle(
@@ -279,7 +279,7 @@ class ThirdBlock extends StatelessWidget {
                                                         ),
                                                       ),
                                                       Text(
-                                                        firstlistitem[2][index]!
+                                                        firstlistitem[1][index]!
                                                             .distance
                                                             .toString(),
                                                         style: TextStyle(

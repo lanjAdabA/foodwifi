@@ -37,7 +37,7 @@ class FifthBlock extends StatelessWidget {
                     child: Row(
                       children: [
                         Text(
-                          alldata[4].title!,
+                          alldata[3].title!,
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
@@ -70,7 +70,7 @@ class FifthBlock extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               physics: const PageScrollPhysics()
                                   .applyTo(const BouncingScrollPhysics()),
-                              itemCount: firstlistitem[4].length,
+                              itemCount: firstlistitem[3].length,
                               itemBuilder: ((
                                 context,
                                 index,
@@ -91,7 +91,7 @@ class FifthBlock extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                             child: CachedNetworkImage(
                                               imageUrl:
-                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[4][index]!.img}',
+                                                  'https://globizs.sgp1.cdn.digitaloceanspaces.com/foodwifi/${firstlistitem[3][index]!.img}',
                                               height: 180,
                                               width: 180,
                                               fit: BoxFit.cover,
@@ -115,7 +115,7 @@ class FifthBlock extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  firstlistitem[4][index]!
+                                                  firstlistitem[3][index]!
                                                       .title!,
                                                   style: TextStyle(
                                                       fontWeight:
@@ -125,14 +125,18 @@ class FifthBlock extends StatelessWidget {
                                                 SizedBox(
                                                   height: 6,
                                                 ),
-                                                Text(
-                                                  firstlistitem[4][index]!
-                                                      .description!,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 10),
-                                                ),
+                                                firstlistitem[3][index]!
+                                                            .description ==
+                                                        null
+                                                    ? SizedBox()
+                                                    : Text(
+                                                        firstlistitem[3][index]!
+                                                            .description!,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            fontSize: 10),
+                                                      ),
                                                 SizedBox(
                                                   height: 4,
                                                 ),
@@ -142,7 +146,7 @@ class FifthBlock extends StatelessWidget {
                                                   //     CrossAxisAlignment.end,
                                                   children: [
                                                     Text(
-                                                      firstlistitem[4][index]!
+                                                      firstlistitem[3][index]!
                                                           .time
                                                           .toString(),
                                                       style: TextStyle(
@@ -162,7 +166,7 @@ class FifthBlock extends StatelessWidget {
                                                       ),
                                                     ),
                                                     Text(
-                                                      firstlistitem[4][index]!
+                                                      firstlistitem[3][index]!
                                                           .distance
                                                           .toString(),
                                                       style: TextStyle(

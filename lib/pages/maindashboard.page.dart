@@ -7,13 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/cubit/fetch_data_cubit.dart';
 import 'package:foodwifi/model/mainmodel.dart';
-import 'package:foodwifi/refactors/eighthBlock.dart';
 import 'package:foodwifi/refactors/fifthBlock.dart';
 import 'package:foodwifi/refactors/firstBlock.dart';
 import 'package:foodwifi/refactors/fourthBlock.dart';
-import 'package:foodwifi/refactors/ninthBlock.dart';
 import 'package:foodwifi/refactors/secondBlock.dart';
-import 'package:foodwifi/refactors/seventhBlock.dart';
 import 'package:foodwifi/refactors/sixthBlock.dart';
 import 'package:foodwifi/refactors/sliverAppBar.dart';
 import 'package:foodwifi/refactors/thirdBlock.dart';
@@ -40,7 +37,15 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
     return Scaffold(
         backgroundColor: Colors.grey[200],
         body: alldata.isEmpty
-            ? Center(
+            ?
+            // Image.asset(
+            //     "assets/splash.gif",
+            //     fit: BoxFit.fill,
+            //     height: MediaQuery.of(context).size.height,
+            //     width: MediaQuery.of(context).size.width,
+            //   )
+
+            Center(
                 child: LoadingAnimationWidget.flickr(
                     leftDotColor: Color.fromARGB(255, 243, 126, 118),
                     size: 60,
@@ -103,6 +108,9 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
                       SliverToBoxAdapter(
                         child: Column(
                           children: [
+                            //   SliderValentine(
+                            //     firstlistitem: firstlistitem,
+                            //   ),
                             FirstBlock(firstlistitem: firstlistitem),
                             SecondBlock(firstlistitem: firstlistitem),
                             ThirdBlock(
@@ -113,12 +121,13 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
                                 alldata: alldata, firstlistitem: firstlistitem),
                             SixthBlock(
                                 alldata: alldata, firstlistitem: firstlistitem),
-                            SeventhBlock(
-                                alldata: alldata, firstlistitem: firstlistitem),
-                            EighthBlock(
-                                alldata: alldata, firstlistitem: firstlistitem),
-                            NinthBlock(
-                                alldata: alldata, firstlistitem: firstlistitem),
+                            //! data conflict on 14th feb
+                            // SeventhBlock(
+                            //     alldata: alldata, firstlistitem: firstlistitem),
+                            // EighthBlock(
+                            //     alldata: alldata, firstlistitem: firstlistitem),
+                            // NinthBlock(
+                            //     alldata: alldata, firstlistitem: firstlistitem),
                             //
                             ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
