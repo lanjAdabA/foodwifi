@@ -16,12 +16,13 @@ class RestaurantListModel {
     required this.type,
   });
 
-  final List<Item> items;
+  final List<ItemRestList> items;
   final String type;
 
   factory RestaurantListModel.fromJson(Map<String, dynamic> json) =>
       RestaurantListModel(
-        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+        items: List<ItemRestList>.from(
+            json["items"].map((x) => ItemRestList.fromJson(x))),
         type: json["type"],
       );
 
@@ -31,8 +32,8 @@ class RestaurantListModel {
       };
 }
 
-class Item {
-  Item({
+class ItemRestList {
+  ItemRestList({
     required this.id,
     required this.slno,
     required this.geoLocation,
@@ -66,8 +67,8 @@ class Item {
   final String geoLocation;
   final String type;
   final String title;
-  final String img;
-  final String logo;
+  final String? img;
+  final String? logo;
   final String description;
   final String distance;
   final double distanceOnly;
@@ -78,17 +79,17 @@ class Item {
   final String ratingCount;
   final dynamic offer;
   final int isOffer;
-  final String offerUpto;
+  final String? offerUpto;
   final String offerDescription;
   final bool showOfferBadge;
   final bool rounded;
-  final String storeChainId;
+  final String? storeChainId;
   final dynamic imageHeight;
   final dynamic imageWidth;
   final dynamic logoImageHeight;
   final dynamic logoImageWidth;
 
-  factory Item.fromJson(Map<String, dynamic> json) => Item(
+  factory ItemRestList.fromJson(Map<String, dynamic> json) => ItemRestList(
         id: json["id"],
         slno: json["slno"],
         geoLocation: json["geo_location"],

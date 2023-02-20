@@ -6,10 +6,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/cubit/fetch_data_cubit.dart';
+import 'package:foodwifi/logics/restaurantList/cubit/restaurant_list_cubit.dart';
 import 'package:foodwifi/model/mainmodel.dart';
+import 'package:foodwifi/model/restaurantalist.model.dart';
 import 'package:foodwifi/refactors/fifthBlock.dart';
 import 'package:foodwifi/refactors/firstBlock.dart';
 import 'package:foodwifi/refactors/fourthBlock.dart';
+import 'package:foodwifi/refactors/restListBlock.dart';
 import 'package:foodwifi/refactors/secondBlock.dart';
 import 'package:foodwifi/refactors/sixthBlock.dart';
 import 'package:foodwifi/refactors/sliverAppBar.dart';
@@ -24,13 +27,27 @@ class HomeDashboardPage extends StatefulWidget {
 }
 
 class _HomeDashboardPageState extends State<HomeDashboardPage> {
+  List<ItemRestList> reslistdata = [];
+
   @override
   Widget build(BuildContext context) {
     final data = context.watch<FetchdatablocCubit>().state;
+    final resdata = context.watch<RestaurantListCubit>().state;
+
+    if (resdata.restaurantListdata != null) {
+      reslistdata = resdata.restaurantListdata!.items;
+    }
+
+    //  if (resdata.allrestuarantdata != null) {
+    //   allreslist = resdata.allrestuarantdata!.items;
+    // }
 
     List<Foodwifimodel> alldata = data.alldata;
 
     List<List<Item?>> firstlistitem = data.firstlistitem;
+    // List<ItemRestList> allreslist = [];s
+    // List<allrestuarantItem> allreslist = [];
+
     log(firstlistitem.toString());
     log("firstlistitem");
     log(alldata.toString());
@@ -128,7 +145,8 @@ class _HomeDashboardPageState extends State<HomeDashboardPage> {
                             //     alldata: alldata, firstlistitem: firstlistitem),
                             // NinthBlock(
                             //     alldata: alldata, firstlistitem: firstlistitem),
-                            //
+
+                            RestaurantListLowerPart(allreslist: reslistdata),
                             ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: 3,

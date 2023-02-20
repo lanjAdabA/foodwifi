@@ -34,7 +34,7 @@ class _SLiverAppBarState extends State<SLiverAppBar> {
     return SliverLayoutBuilder(builder: (context, constraints) {
       var scrollvalue = constraints.scrollOffset;
       return SliverAppBar(
-        toolbarHeight: height / 8.9,
+        toolbarHeight: height / 9.99,
         floating: true, pinned: true,
         backgroundColor: Colors.blueGrey[100],
 
