@@ -222,42 +222,60 @@ class ThirdBlock extends StatelessWidget {
                                                     // crossAxisAlignment:
                                                     //     CrossAxisAlignment.end,
                                                     children: [
-                                                      Column(
-                                                        children: [
-                                                          Icon(
-                                                            Icons.star,
-                                                            color: Colors
-                                                                .yellow[800],
-                                                            size: 11,
-                                                          ),
-                                                          SizedBox(
-                                                            height: 2,
-                                                          )
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        width: 2,
-                                                      ),
-                                                      Text(
-                                                        firstlistitem[1][index]!
-                                                            .rating
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            fontSize: 10,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Colors
-                                                                .grey[700]),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(2.0),
-                                                        child: Icon(
-                                                          Icons.circle,
-                                                          size: 2,
-                                                        ),
-                                                      ),
+                                                      firstlistitem[1][index]!
+                                                                  .rating ==
+                                                              null
+                                                          ? SizedBox()
+                                                          : Row(
+                                                              children: [
+                                                                Column(
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .star,
+                                                                      color: Colors
+                                                                              .yellow[
+                                                                          800],
+                                                                      size: 11,
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 2,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 2,
+                                                                ),
+                                                                Text(
+                                                                  firstlistitem[
+                                                                              1]
+                                                                          [
+                                                                          index]!
+                                                                      .rating
+                                                                      .toString(),
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          10,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          700]),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                              .all(
+                                                                          2.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .circle,
+                                                                    size: 2,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                       Text(
                                                         firstlistitem[1][index]!
                                                             .time

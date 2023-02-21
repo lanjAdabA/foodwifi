@@ -7,6 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:foodwifi/logics/searchResturantByItem/cubit/search_resturant_by_item_cubit.dart';
+import 'package:foodwifi/model/filterChip.model.dart';
 import 'package:foodwifi/model/resturant_search_by_item.model.dart';
 import 'package:foodwifi/refactors/skeletonBlock.dart';
 import 'package:foodwifi/router/router.gr.dart';
@@ -18,8 +19,11 @@ class RestaurantSearchByItemPage extends StatefulWidget {
   final String cuisinesId;
   final String storetypeid;
   final String checkname;
+  final double spacing = 8;
 
-  const RestaurantSearchByItemPage(
+  bool isSelected = false;
+
+  RestaurantSearchByItemPage(
       {super.key,
       required this.itemname,
       required this.issearchfound,
@@ -75,7 +79,7 @@ class _RestaurantSearchByItemPageState
     });
   }
 
-  List seachitems = [
+  List searchitems = [
     'Sort by',
     'Store types',
     'Cuisiness',
@@ -191,7 +195,7 @@ class _RestaurantSearchByItemPageState
                     ),
                   ),
                   FloatingAppbarPart(
-                    seachitems: seachitems,
+                    searchitems: searchitems,
                     itemname: widget.itemname,
                   ),
                 ],
@@ -433,16 +437,25 @@ class RestaurantBlockSection extends StatelessWidget {
   }
 }
 
-class FloatingAppbarPart extends StatelessWidget {
+class FloatingAppbarPart extends StatefulWidget {
   final String itemname;
 
-  const FloatingAppbarPart({
+  FloatingAppbarPart({
     super.key,
-    required this.seachitems,
+    required this.searchitems,
     required this.itemname,
   });
 
-  final List seachitems;
+  final List searchitems;
+
+  @override
+  State<FloatingAppbarPart> createState() => _FloatingAppbarPartState();
+}
+
+class _FloatingAppbarPartState extends State<FloatingAppbarPart> {
+  List<FilterChipData> filterChips = FilterChips.all;
+
+  final double spacing = 8;
 
   @override
   Widget build(BuildContext context) {
@@ -470,7 +483,7 @@ class FloatingAppbarPart extends StatelessWidget {
                     ),
                   ),
                   title: Text(
-                    itemname,
+                    widget.itemname,
                     style: TextStyle(color: Colors.grey[800]),
                   ),
                   centerTitle: true,
@@ -478,24 +491,52 @@ class FloatingAppbarPart extends StatelessWidget {
                 ),
                 Container(
                   color: Colors.grey[50],
+                  // color: Colors.amber,
                   height: 44,
                   child: ListView.builder(
-                    itemCount: seachitems.length,
+                    padding: EdgeInsets.zero,
+                    itemCount: widget.searchitems.length,
+                    // itemCount: 1,
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 8),
-                          child: Chip(
-                            // labelPadding: EdgeInsets.only(bottom: 10),
-                            label: Text(
-                              seachitems[index],
-                              style: TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.w500),
-                            ),
-                            backgroundColor: Colors.grey[300],
-                          ));
+                      return FilterChip(
+                        padding: EdgeInsets.zero,
+                        // label: Text(filterChip.label),
+
+                        label: Text(
+                          widget.searchitems[index],
+                        ),
+                        labelStyle: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.amber),
+                        backgroundColor: Colors.red.withOpacity(0.1),
+                        onSelected: (isSelected) {
+                          //   setState(() {
+                          //   filterChips = filterChips.map((otherChip) {
+                          //     return filterChip == otherChip
+                          //         ? otherChip.copy(isSelected: isSelected)
+                          //         : otherChip;
+                          //   }).toList();
+                          // });
+                        },
+                        // selected: filterChip.isSelected,
+                        // checkmarkColor: filterChip.color,
+                        showCheckmark: false,
+                        selectedColor: Colors.green.withOpacity(0.5),
+                        shadowColor: Colors.black,
+                        elevation: 2,
+                      );
+                      // Wrap(
+                      //   runSpacing: spacing,
+                      //   spacing: spacing,
+                      //   children: filterChips
+                      //       .map((filterChip) => Padding(
+                      //             padding: const EdgeInsets.only(left: 8.0),
+                      //             child:
+
+                      //           ))
+                      //       .toList(),
+                      // );
                     },
                   ),
                 ),
@@ -506,4 +547,41 @@ class FloatingAppbarPart extends StatelessWidget {
       ],
     );
   }
+}
+
+class FilterChips {
+  static final all = <FilterChipData>[
+    const FilterChipData(
+      // label: Text(widget.searchitems[index]),
+      //  widget.searchitems[index]
+      label: 'FilterChip_1',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+    const FilterChipData(
+      label: 'FilterChip_2',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+    const FilterChipData(
+      label: 'FilterChip_3',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+    const FilterChipData(
+      label: 'FilterChip_4',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+    const FilterChipData(
+      label: 'FilterChip_5',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+    const FilterChipData(
+      label: 'FilterChip_6',
+      isSelected: false,
+      color: Colors.grey,
+    ),
+  ];
 }

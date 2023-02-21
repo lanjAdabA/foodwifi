@@ -9,14 +9,14 @@ import 'package:foodwifi/logics/cubit/fetch_data_cubit.dart';
 import 'package:foodwifi/logics/restaurantList/cubit/restaurant_list_cubit.dart';
 import 'package:foodwifi/model/mainmodel.dart';
 import 'package:foodwifi/model/restaurantalist.model.dart';
-import 'package:foodwifi/refactors/fifthBlock.dart';
-import 'package:foodwifi/refactors/firstBlock.dart';
+import 'package:foodwifi/refactors/5newOnFoodwifi.dart';
+import 'package:foodwifi/refactors/1orderAndWInCashBAck.dart';
 import 'package:foodwifi/refactors/fourthBlock.dart';
 import 'package:foodwifi/refactors/restListBlock.dart';
-import 'package:foodwifi/refactors/secondBlock.dart';
-import 'package:foodwifi/refactors/sixthBlock.dart';
+import 'package:foodwifi/refactors/2FoodsNearYou.dart';
+import 'package:foodwifi/refactors/6ImphalMostFav.dart';
 import 'package:foodwifi/refactors/sliverAppBar.dart';
-import 'package:foodwifi/refactors/thirdBlock.dart';
+import 'package:foodwifi/refactors/3offersForYou.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HomeDashboardPage extends StatefulWidget {
