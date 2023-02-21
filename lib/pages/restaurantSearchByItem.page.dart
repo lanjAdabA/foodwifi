@@ -457,6 +457,14 @@ class _FloatingAppbarPartState extends State<FloatingAppbarPart> {
 
   final double spacing = 8;
 
+  final List<bool> _selectedItems = [false, false, false, false, false, false];
+
+  void _onItemSelect(int index) {
+    setState(() {
+      _selectedItems[index] = !_selectedItems[index];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -508,23 +516,19 @@ class _FloatingAppbarPartState extends State<FloatingAppbarPart> {
                           widget.searchitems[index],
                         ),
                         labelStyle: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.amber),
-                        backgroundColor: Colors.red.withOpacity(0.1),
-                        onSelected: (isSelected) {
-                          //   setState(() {
-                          //   filterChips = filterChips.map((otherChip) {
-                          //     return filterChip == otherChip
-                          //         ? otherChip.copy(isSelected: isSelected)
-                          //         : otherChip;
-                          //   }).toList();
-                          // });
-                        },
+                            fontWeight: FontWeight.bold, color: Colors.grey),
+                        backgroundColor: Colors.grey.withOpacity(0.1),
+
                         // selected: filterChip.isSelected,
                         // checkmarkColor: filterChip.color,
                         showCheckmark: false,
                         selectedColor: Colors.green.withOpacity(0.5),
-                        shadowColor: Colors.black,
+                        shadowColor: Color.fromARGB(255, 192, 191, 191),
                         elevation: 2,
+                        selected: _selectedItems[index],
+                        onSelected: (bool selected) {
+                          _onItemSelect(index);
+                        },
                       );
                       // Wrap(
                       //   runSpacing: spacing,
