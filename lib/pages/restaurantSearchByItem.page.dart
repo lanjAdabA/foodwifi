@@ -508,27 +508,30 @@ class _FloatingAppbarPartState extends State<FloatingAppbarPart> {
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return FilterChip(
-                        padding: EdgeInsets.zero,
-                        // label: Text(filterChip.label),
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        child: FilterChip(
+                          padding: EdgeInsets.zero,
+                          // label: Text(filterChip.label),
 
-                        label: Text(
-                          widget.searchitems[index],
+                          label: Text(
+                            widget.searchitems[index],
+                          ),
+                          labelStyle: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.grey),
+                          backgroundColor: Colors.grey.withOpacity(0.1),
+
+                          // selected: filterChip.isSelected,
+                          // checkmarkColor: filterChip.color,
+                          showCheckmark: false,
+                          selectedColor: Colors.green.withOpacity(0.6),
+                          shadowColor: Color.fromARGB(255, 192, 191, 191),
+                          elevation: 2,
+                          selected: _selectedItems[index],
+                          onSelected: (bool selected) {
+                            _onItemSelect(index);
+                          },
                         ),
-                        labelStyle: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.grey),
-                        backgroundColor: Colors.grey.withOpacity(0.1),
-
-                        // selected: filterChip.isSelected,
-                        // checkmarkColor: filterChip.color,
-                        showCheckmark: false,
-                        selectedColor: Colors.green.withOpacity(0.5),
-                        shadowColor: Color.fromARGB(255, 192, 191, 191),
-                        elevation: 2,
-                        selected: _selectedItems[index],
-                        onSelected: (bool selected) {
-                          _onItemSelect(index);
-                        },
                       );
                       // Wrap(
                       //   runSpacing: spacing,
